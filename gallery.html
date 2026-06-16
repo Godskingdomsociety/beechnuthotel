@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery — Beechnut Hotel Warri</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- CSS-only filter (gallery.js removed — static) -->
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       BEECHNUT HOTEL — GALLERY PAGE STYLES
+       Palette: deep forest + warm gold on near-black.
+       Dark editorial feel — images breathe against a dark canvas.
+    ═══════════════════════════════════════════════════════════ */
+
+    :root {
+      --forest:       #1a2e22;
+      --forest-mid:   #243d2e;
+      --forest-soft:  #2f5040;
+      --gold:         #b8924a;
+      --gold-light:   #d4a96a;
+      --gold-pale:    #f0e0c0;
+      --cream:        #f8f4ec;
+      --cream-dark:   #ede7db;
+      --ink:          #0e1710;
+      --ink-soft:     #151f18;
+      --text:         #e8e2d8;
+      --text-muted:   #9a9585;
+      --text-dim:     #6a6560;
+      --border:       #2a3d30;
+      --white:        #ffffff;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+
+      --radius:    4px;
+      --radius-lg: 8px;
+      --gap:       12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SITE HEADER ──────────────────────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(14, 23, 16, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-header__logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    .site-header__logo em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+
+    .site-header__nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .site-header__nav a {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .site-header__nav a:hover,
+    .site-header__nav a.active { color: var(--gold-light); }
+
+    .site-header__cta {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--forest);
+      background: var(--gold);
+      border: none;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .site-header__cta:hover { background: var(--gold-light); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .gallery-hero {
+      height: 60vh;
+      min-height: 400px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--ink-soft);
+    }
+
+    /* Layered background: dark forest texture via CSS */
+    .gallery-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(26,46,34,0.7) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 20%, rgba(184,146,74,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 10%, rgba(184,146,74,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Subtle grain overlay */
+    .gallery-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .gallery-hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 2rem;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .breadcrumb a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--gold); }
+
+    .breadcrumb__sep {
+      color: var(--border);
+      font-size: 0.8rem;
+    }
+
+    .breadcrumb__current {
+      color: var(--gold);
+    }
+
+    .gallery-hero__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .gallery-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .gallery-hero__title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .gallery-hero__sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Hero decorative rule */
+    .gallery-hero__rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.25rem auto 0;
+      opacity: 0.5;
+    }
+
+    /* ── FILTER BAR ───────────────────────────────────────── */
+    .filter-bar {
+      position: sticky;
+      top: 64px;
+      z-index: 40;
+      background: rgba(14, 23, 16, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+
+    .filter-bar__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding: 1rem 0;
+    }
+
+    .filter-bar__inner::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .filter-btn--active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* CSS radio filter */
+    .gf-radio { display: none; }
+
+    #gf-all:checked ~ .gallery-section .gallery-grid .gallery-item { display: inline-block; opacity: 1; transform: none; }
+    #gf-rooms:checked ~ .gallery-section .gallery-grid .gallery-item:has(img[data-category="rooms"]) { display: inline-block; opacity: 1; transform: none; }
+    #gf-rooms:checked ~ .gallery-section .gallery-grid .gallery-item:not(:has(img[data-category="rooms"])) { display: none; }
+    #gf-dining:checked ~ .gallery-section .gallery-grid .gallery-item:has(img[data-category="dining"]) { display: inline-block; opacity: 1; transform: none; }
+    #gf-dining:checked ~ .gallery-section .gallery-grid .gallery-item:not(:has(img[data-category="dining"])) { display: none; }
+    #gf-facilities:checked ~ .gallery-section .gallery-grid .gallery-item:has(img[data-category="facilities"]) { display: inline-block; opacity: 1; transform: none; }
+    #gf-facilities:checked ~ .gallery-section .gallery-grid .gallery-item:not(:has(img[data-category="facilities"])) { display: none; }
+    #gf-events:checked ~ .gallery-section .gallery-grid .gallery-item:has(img[data-category="events"]) { display: inline-block; opacity: 1; transform: none; }
+    #gf-events:checked ~ .gallery-section .gallery-grid .gallery-item:not(:has(img[data-category="events"])) { display: none; }
+    #gf-exterior:checked ~ .gallery-section .gallery-grid .gallery-item:has(img[data-category="exterior"]) { display: inline-block; opacity: 1; transform: none; }
+    #gf-exterior:checked ~ .gallery-section .gallery-grid .gallery-item:not(:has(img[data-category="exterior"])) { display: none; }
+
+    #gf-all:checked ~ .filter-bar .filter-bar__inner label[for="gf-all"],
+    #gf-rooms:checked ~ .filter-bar .filter-bar__inner label[for="gf-rooms"],
+    #gf-dining:checked ~ .filter-bar .filter-bar__inner label[for="gf-dining"],
+    #gf-facilities:checked ~ .filter-bar .filter-bar__inner label[for="gf-facilities"],
+    #gf-events:checked ~ .filter-bar .filter-bar__inner label[for="gf-events"],
+    #gf-exterior:checked ~ .filter-bar .filter-bar__inner label[for="gf-exterior"] {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .filter-bar__count {
+      margin-left: auto;
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+    }
+
+    /* ── GALLERY SECTION ──────────────────────────────────── */
+    .gallery-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* CSS columns masonry — 3 col desktop, 2 tablet, 1 mobile */
+    .gallery-grid {
+      columns: 3;
+      column-gap: var(--gap);
+    }
+
+    @media (max-width: 900px) { .gallery-grid { columns: 2; } }
+    @media (max-width: 520px) { .gallery-grid { columns: 1; } }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: var(--gap);
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--ink-soft);
+
+      /* Scroll reveal: start hidden */
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease, filter 0.3s;
+    }
+
+    .gallery-item--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gallery-item--hidden {
+      display: none;
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s;
+      filter: brightness(0.92) saturate(0.9);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1) saturate(1.05);
+    }
+
+    /* Hover caption overlay */
+    .gallery-item__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,18,12,0.82) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover .gallery-item__overlay {
+      opacity: 1;
+    }
+
+    .gallery-item__caption {
+      font-size: 0.78rem;
+      color: var(--cream);
+      line-height: 1.4;
+      font-weight: 300;
+    }
+
+    .gallery-item__cat {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ── VIDEO SECTION ────────────────────────────────────── */
+    .video-section {
+      background: var(--ink-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 1.5rem;
+    }
+
+    .video-section__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 700px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+
+    .video-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--ink);
+    }
+
+    .video-wrap__ratio {
+      position: relative;
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-wrap__ratio iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .video-wrap__label {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .video-wrap__label h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .video-wrap__label p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ── LIGHTBOX ────────────────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .lightbox--open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    .lightbox__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 13, 9, 0.96);
+      cursor: zoom-out;
+    }
+
+    .lightbox__stage {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox__frame {
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox__img {
+      max-width: 90vw;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+      border-radius: var(--radius);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      transition: opacity 0.25s;
+    }
+
+    .lightbox__img--loading {
+      opacity: 0.4;
+    }
+
+    .lightbox__btn {
+      position: absolute;
+      background: rgba(26,46,34,0.7);
+      border: 1px solid rgba(184,146,74,0.25);
+      color: var(--cream);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      z-index: 2;
+    }
+
+    .lightbox__btn:hover {
+      background: rgba(184,146,74,0.3);
+      border-color: var(--gold);
+      transform: scale(1.08);
+    }
+
+    .lightbox__btn--close {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .lightbox__btn--prev {
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox__btn--prev:hover {
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lightbox__btn--next {
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox__btn--next:hover {
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lightbox__footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to top, rgba(8,13,9,0.9) 0%, transparent 100%);
+    }
+
+    .lightbox__caption {
+      font-size: 0.88rem;
+      color: var(--cream);
+      font-weight: 300;
+      max-width: 60%;
+    }
+
+    .lightbox__counter {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    .site-footer {
+      background: var(--forest);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--forest-soft);
+    }
+
+    .site-footer__logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .site-footer__logo em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .site-footer__copy {
+      font-size: 0.78rem;
+      color: var(--gold-pale);
+      opacity: 0.5;
+    }
+
+    /* ── RESPONSIVE HEADER ────────────────────────────────── */
+    @media (max-width: 700px) {
+      .site-header__nav { display: none; }
+      .site-header { padding: 0 1.25rem; }
+      .gallery-section { padding: 2rem 1rem 4rem; }
+      .video-section { padding: 3rem 1rem; }
+      .filter-bar { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <header class="site-header">
+    <a href="index.html" class="site-header__logo">Beechnut <em>·</em> Warri</a>
+    <nav>
+      <ul class="site-header__nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="dining.html">Dining</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="booking.html" class="site-header__cta">Book Now</a>
+  </header>
+
+  <!-- ── HERO ────────────────────────────────────────────── -->
+  <section class="gallery-hero">
+    <div class="gallery-hero__content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep">›</span>
+        <span class="breadcrumb__current">Gallery</span>
+      </nav>
+      <p class="gallery-hero__eyebrow">Visual Journey</p>
+      <h1 class="gallery-hero__title">Life at <em>Beechnut</em></h1>
+      <p class="gallery-hero__sub">
+        Rooms crafted for comfort, dining steeped in flavour, spaces built for memory.
+        Every frame tells a story of Warri's finest hospitality.
+      </p>
+      <div class="gallery-hero__rule"></div>
+    </div>
+  </section>
+
+  <!-- ── FILTER BAR ───────────────────────────────────────── -->
+  <div class="filter-bar" role="navigation" aria-label="Gallery filter">
+    <div class="filter-bar__inner">
+      <label class="filter-btn" for="gf-all">All</label>
+      <label class="filter-btn" for="gf-rooms">Rooms</label>
+      <label class="filter-btn" for="gf-dining">Dining</label>
+      <label class="filter-btn" for="gf-facilities">Facilities</label>
+      <label class="filter-btn" for="gf-events">Events</label>
+      <label class="filter-btn" for="gf-exterior">Exterior</label>
+    </div>
+  </div>
+
+  <!-- ── GALLERY GRID ─────────────────────────────────────── -->
+  <section class="gallery-section" aria-label="Photo gallery">
+    <input type="radio" name="gf" id="gf-all" class="gf-radio" checked />
+    <input type="radio" name="gf" id="gf-rooms" class="gf-radio" />
+    <input type="radio" name="gf" id="gf-dining" class="gf-radio" />
+    <input type="radio" name="gf" id="gf-facilities" class="gf-radio" />
+    <input type="radio" name="gf" id="gf-events" class="gf-radio" />
+    <input type="radio" name="gf" id="gf-exterior" class="gf-radio" />
+
+    <div class="gallery-grid" id="gallery-grid">
+
+      <!-- ROOMS ──────────────────────────────────── -->
+      <div class="gallery-item" data-category="rooms">
+        <img
+          src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80"
+          data-category="rooms"
+          data-caption="Presidential Suite — panoramic views over Warri"
+          alt="Presidential Suite bedroom with panoramic windows"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Rooms</span>
+            <span class="gallery-item__caption">Presidential Suite — panoramic views over Warri</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80"
+          data-category="rooms"
+          data-caption="Executive Suite — separate living area with curated furnishings"
+          alt="Executive Suite living area"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Rooms</span>
+            <span class="gallery-item__caption">Executive Suite — separate living area with curated furnishings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTERIOR ──────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
+          data-category="exterior"
+          data-caption="Beechnut Hotel — a landmark presence in Warri"
+          alt="Beechnut Hotel exterior at dusk"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Exterior</span>
+            <span class="gallery-item__caption">Beechnut Hotel — a landmark presence in Warri</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DINING ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
+          data-category="dining"
+          data-caption="The Beechnut Restaurant — fine dining, Warri's finest table"
+          alt="Main restaurant dining room"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Dining</span>
+            <span class="gallery-item__caption">The Beechnut Restaurant — fine dining, Warri's finest table</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOMS ──────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80"
+          data-category="rooms"
+          data-caption="Deluxe Room — king bed with premium linen and city views"
+          alt="Deluxe Room with king bed"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Rooms</span>
+            <span class="gallery-item__caption">Deluxe Room — king bed with premium linen and city views</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACILITIES ─────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80"
+          data-category="facilities"
+          data-caption="Fitness Centre — fully equipped, open 24 hours"
+          alt="Hotel fitness centre"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Facilities</span>
+            <span class="gallery-item__caption">Fitness Centre — fully equipped, open 24 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80"
+          data-category="events"
+          data-caption="Grand Ballroom — capacity for 300 guests, impeccable service"
+          alt="Hotel grand ballroom set for an event"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Events</span>
+            <span class="gallery-item__caption">Grand Ballroom — capacity for 300 guests, impeccable service</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOMS ──────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1552858725-2758b5fb1286?w=800&q=80"
+          data-category="rooms"
+          data-caption="Junior Suite bathroom — walk-in rain shower with marble finishes"
+          alt="Junior Suite bathroom with rain shower"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Rooms</span>
+            <span class="gallery-item__caption">Junior Suite bathroom — walk-in rain shower with marble finishes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTERIOR ──────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&q=80"
+          data-category="exterior"
+          data-caption="The pool terrace — a secluded oasis above the city"
+          alt="Outdoor pool and terrace area"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Exterior</span>
+            <span class="gallery-item__caption">The pool terrace — a secluded oasis above the city</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DINING ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800&q=80"
+          data-category="dining"
+          data-caption="Bar & Lounge — artisan cocktails and evening ambience"
+          alt="Hotel bar and lounge"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Dining</span>
+            <span class="gallery-item__caption">Bar & Lounge — artisan cocktails and evening ambience</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACILITIES ─────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1519167758481-83f29c6d191e?w=800&q=80"
+          data-category="facilities"
+          data-caption="Conference Suite — AV-equipped, natural light, seating for 80"
+          alt="Hotel conference suite"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Facilities</span>
+            <span class="gallery-item__caption">Conference Suite — AV-equipped, natural light, seating for 80</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOMS ──────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80"
+          data-category="rooms"
+          data-caption="Twin Room — perfectly balanced for travelling companions"
+          alt="Twin room with two beds"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Rooms</span>
+            <span class="gallery-item__caption">Twin Room — perfectly balanced for travelling companions</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80"
+          data-category="events"
+          data-caption="Corporate gala dinner — floor-length linens, candlelight"
+          alt="Corporate gala dinner setup"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Events</span>
+            <span class="gallery-item__caption">Corporate gala dinner — floor-length linens, candlelight</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTERIOR ──────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80"
+          data-category="exterior"
+          data-caption="Hotel entrance — grand arrival experience"
+          alt="Hotel main entrance and driveway"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Exterior</span>
+            <span class="gallery-item__caption">Hotel entrance — grand arrival experience</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DINING ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80"
+          data-category="dining"
+          data-caption="Breakfast spread — fresh, local, abundant every morning"
+          alt="Hotel breakfast spread"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Dining</span>
+            <span class="gallery-item__caption">Breakfast spread — fresh, local, abundant every morning</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACILITIES ─────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80"
+          data-category="facilities"
+          data-caption="Spa & Wellness — treatments inspired by West African botanicals"
+          alt="Hotel spa treatment room"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Facilities</span>
+            <span class="gallery-item__caption">Spa & Wellness — treatments inspired by West African botanicals</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOMS ──────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1564078516393-cf04bd966897?w=800&q=80"
+          data-category="rooms"
+          data-caption="Standard Room — thoughtfully appointed for every traveller"
+          alt="Standard room interior"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Rooms</span>
+            <span class="gallery-item__caption">Standard Room — thoughtfully appointed for every traveller</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80"
+          data-category="events"
+          data-caption="Live entertainment evening — cultural acts on the main stage"
+          alt="Live music event at the hotel"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Events</span>
+            <span class="gallery-item__caption">Live entertainment evening — cultural acts on the main stage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTERIOR ──────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1506059612708-99d6128a49d5?w=800&q=80"
+          data-category="exterior"
+          data-caption="Gardens & grounds — manicured greenery year-round"
+          alt="Hotel gardens and grounds"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Exterior</span>
+            <span class="gallery-item__caption">Gardens & grounds — manicured greenery year-round</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DINING ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80"
+          data-category="dining"
+          data-caption="Private dining room — bespoke menus, intimate gatherings"
+          alt="Private dining room"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Dining</span>
+            <span class="gallery-item__caption">Private dining room — bespoke menus, intimate gatherings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACILITIES ─────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+          data-category="facilities"
+          data-caption="Business Centre — private workstations, high-speed fibre"
+          alt="Hotel business centre"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Facilities</span>
+            <span class="gallery-item__caption">Business Centre — private workstations, high-speed fibre</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOMS ──────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1549294413-26f195200c16?w=800&q=80"
+          data-category="rooms"
+          data-caption="Presidential Suite lounge — butler service, full kitchen"
+          alt="Presidential suite lounge area"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Rooms</span>
+            <span class="gallery-item__caption">Presidential Suite lounge — butler service, full kitchen</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS ────────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80"
+          data-category="events"
+          data-caption="Wedding reception — bespoke florals, golden candlelight"
+          alt="Wedding reception at the hotel"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Events</span>
+            <span class="gallery-item__caption">Wedding reception — bespoke florals, golden candlelight</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTERIOR ──────────────────────────────── -->
+      <div class="gallery-item">
+        <img
+          src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=80"
+          data-category="exterior"
+          data-caption="Night façade — Beechnut illuminated against the Warri skyline"
+          alt="Hotel exterior at night"
+          loading="lazy"
+        />
+        <div class="gallery-item__overlay">
+          <div>
+            <span class="gallery-item__cat">Exterior</span>
+            <span class="gallery-item__caption">Night façade — Beechnut illuminated against the Warri skyline</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /gallery-grid -->
+  </section>
+
+  <!-- ── VIDEO SECTION ────────────────────────────────────── -->
+  <section class="video-section" aria-label="Hotel videos">
+    <div class="video-section__inner">
+      <p class="section-eyebrow">In Motion</p>
+      <h2 class="section-title">See Beechnut <em>Come Alive</em></h2>
+      <div class="video-grid">
+
+        <div class="video-wrap">
+          <div class="video-wrap__ratio">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+              title="Beechnut Hotel Warri — Hotel Tour"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="video-wrap__label">
+            <h3>Hotel Tour</h3>
+            <p>A full walkthrough of our rooms, facilities and grounds</p>
+          </div>
+        </div>
+
+        <div class="video-wrap">
+          <div class="video-wrap__ratio">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&start=30"
+              title="Beechnut Hotel Warri — Dining Experience"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="video-wrap__label">
+            <h3>Dining Experience</h3>
+            <p>From breakfast to candlelit dinner — taste what Warri has to offer</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="site-footer__logo">Beechnut <em>·</em> Warri</div>
+    <p class="site-footer__copy">© 2025 Beechnut Hotel Warri. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

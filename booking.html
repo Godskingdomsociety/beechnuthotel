@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Room — Beechnut Hotel Warri</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       BEECHNUT HOTEL — BOOKING PAGE STYLES
+       Aesthetic: Refined West-African luxury. Deep forest greens,
+       warm gold, cream vellum. Cormorant Garamond editorial serif
+       paired with DM Sans utilitarian body. Understated opulence.
+    ═══════════════════════════════════════════════════════════ */
+
+    :root {
+      --forest:      #1a2e22;
+      --forest-mid:  #243d2e;
+      --forest-soft: #2f5040;
+      --gold:        #b8924a;
+      --gold-light:  #d4a96a;
+      --gold-pale:   #f0e0c0;
+      --cream:       #f8f4ec;
+      --cream-dark:  #ede7db;
+      --ivory:       #fdfaf5;
+      --text:        #1a1a17;
+      --text-muted:  #6b6557;
+      --text-light:  #9a9080;
+      --border:      #ddd5c0;
+      --border-soft: #ece8df;
+      --white:       #ffffff;
+      --error:       #b8294a;
+      --success:     #1a6641;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'DM Mono', monospace;
+
+      --radius:   4px;
+      --radius-lg: 8px;
+      --shadow:   0 2px 16px rgba(26,46,34,0.08);
+      --shadow-lg: 0 8px 40px rgba(26,46,34,0.14);
+
+      --accent: var(--gold);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--ivory);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── BOOKING HEADER ─────────────────────────────────────── */
+    .booking-header {
+      background: var(--forest);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid var(--forest-soft);
+    }
+
+    .booking-header__logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .booking-header__logo span {
+      color: var(--gold-light);
+    }
+
+    .booking-header__back {
+      font-size: 0.78rem;
+      color: var(--gold-pale);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .booking-header__back:hover { opacity: 1; }
+
+    /* ── PAGE HERO ──────────────────────────────────────────── */
+    .booking-hero {
+      background: var(--forest);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 0%, rgba(184,146,74,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .booking-hero__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .booking-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.15;
+    }
+
+    .booking-hero__title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    /* ── PROGRESS BAR ───────────────────────────────────────── */
+    #booking-progress-bar {
+      background: var(--cream-dark);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .progress-track {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .progress-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.1rem 0.5rem;
+      gap: 0.35rem;
+      position: relative;
+      cursor: default;
+      transition: background 0.2s;
+    }
+
+    .progress-step + .progress-step::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60%;
+      background: var(--border);
+    }
+
+    .progress-step__num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-light);
+      background: var(--white);
+      transition: all 0.25s;
+    }
+
+    .progress-step__label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      transition: color 0.25s;
+    }
+
+    .progress-step.active .progress-step__num {
+      background: var(--forest);
+      border-color: var(--forest);
+      color: var(--gold-light);
+    }
+
+    .progress-step.active .progress-step__label {
+      color: var(--forest);
+      font-weight: 500;
+    }
+
+    .progress-step.completed .progress-step__num {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+
+    .progress-step.completed .progress-step__num::after {
+      content: '✓';
+      font-size: 0.75rem;
+    }
+
+    .progress-step.completed .progress-step__label {
+      color: var(--gold);
+    }
+
+    /* ── BOOKING WRAP & STEPS ───────────────────────────────── */
+    #booking-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .booking-step { display: none; }
+
+    /* Fallback: if JS hasn't run yet, keep step-1 visible until JS takes over */
+    #step-1 { display: block; }
+
+    /* ── BOOKING ERROR ───────────────────────────────────────── */
+    #booking-error {
+      display: none;
+      background: #fdf2f4;
+      border: 1px solid #f4c2cc;
+      border-left: 4px solid var(--error);
+      color: var(--error);
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── PRESELECT BANNER ───────────────────────────────────── */
+    #preselect-banner {
+      margin-bottom: 1.5rem;
+    }
+
+    .preselect-notice {
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+      color: var(--cream);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    .preselect-notice strong { color: var(--gold-light); }
+
+    /* ── STEP HEADINGS ───────────────────────────────────────── */
+    .step-heading {
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .step-heading__eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-heading__title {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 400;
+      color: var(--forest);
+      line-height: 1.2;
+    }
+
+    /* ── STEP 1 — DATE SEARCH ───────────────────────────────── */
+    .date-search-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      max-width: 720px;
+    }
+
+    .date-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .date-grid--4 {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @media (max-width: 640px) {
+      .date-grid, .date-grid--4 { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .form-label span {
+      color: var(--error);
+      margin-left: 2px;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.93rem;
+      color: var(--text);
+      background: var(--ivory);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px rgba(26,46,34,0.08);
+      background: var(--white);
+    }
+
+    .form-input[type="date"] { cursor: pointer; }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6557' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.93rem;
+      color: var(--text);
+      background: var(--ivory);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--forest);
+      box-shadow: 0 0 0 3px rgba(26,46,34,0.08);
+      background: var(--white);
+    }
+
+    /* ── BUTTONS ─────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn--primary {
+      background: var(--forest);
+      color: var(--cream);
+      border: 1.5px solid var(--forest);
+    }
+    .btn--primary:hover {
+      background: var(--forest-soft);
+      border-color: var(--forest-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(26,46,34,0.22);
+    }
+
+    .btn--gold {
+      background: var(--gold);
+      color: var(--white);
+      border: 1.5px solid var(--gold);
+    }
+    .btn--gold:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn--outline-dark {
+      background: transparent;
+      color: var(--forest);
+      border: 1.5px solid var(--forest);
+    }
+    .btn--outline-dark:hover {
+      background: var(--forest);
+      color: var(--cream);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1.5px solid var(--border);
+      padding: 0.5rem 1rem;
+    }
+    .btn--ghost:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    .btn--sm {
+      padding: 0.55rem 1.1rem;
+      font-size: 0.82rem;
+    }
+
+    .btn--lg {
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* ── SEARCH SUMMARY ─────────────────────────────────────── */
+    .search-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 2rem;
+      background: var(--forest);
+      color: var(--cream);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-summary strong { color: var(--gold-light); }
+
+    /* ── STEP 2 — ROOMS GRID ────────────────────────────────── */
+    #rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .room-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .room-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .room-card--unavailable {
+      opacity: 0.6;
+    }
+
+    .room-card__image-wrap {
+      position: relative;
+      height: 210px;
+      overflow: hidden;
+      background: var(--cream-dark);
+    }
+
+    .room-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .room-card:hover .room-card__image {
+      transform: scale(1.04);
+    }
+
+    .room-card__type-badge {
+      position: absolute;
+      top: 0.875rem;
+      left: 0.875rem;
+      background: var(--forest);
+      color: var(--gold-light);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+    }
+
+    .room-card__body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      flex: 1;
+    }
+
+    .room-card__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .room-card__name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--forest);
+      line-height: 1.2;
+    }
+
+    .room-status {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .room-status--available {
+      background: #e8f4ed;
+      color: var(--success);
+    }
+
+    .room-status--unavailable {
+      background: #fdf2f4;
+      color: var(--error);
+    }
+
+    .room-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .room-card__desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .room-card__amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .amenity-tag {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .room-card__pricing {
+      border-top: 1px solid var(--border-soft);
+      padding-top: 0.85rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+
+    .room-card__price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
+    }
+
+    .room-card__rate {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--forest);
+    }
+
+    .room-card__per {
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    .room-card__total {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .room-card__total strong {
+      color: var(--text);
+    }
+
+    .room-card__actions {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: auto;
+    }
+
+    .room-card__actions .btn {
+      flex: 1;
+      justify-content: center;
+    }
+
+    /* ── STEP 3 — GUEST FORM LAYOUT ─────────────────────────── */
+    .step3-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .step3-layout { grid-template-columns: 1fr; }
+    }
+
+    .guest-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .guest-form-card .date-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .form-section-title {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .guest-form-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    /* ── BOOKING SIDEBAR ─────────────────────────────────────── */
+    .booking-sidebar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 80px;
+    }
+
+    .sidebar-room-img {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      display: block;
+      background: var(--cream-dark);
+    }
+
+    .sidebar-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .sidebar-room-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--forest);
+    }
+
+    .sidebar-dates {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .sidebar-dates > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.85rem;
+    }
+
+    .sidebar-dates > div > span:first-child {
+      color: var(--text-muted);
+    }
+
+    .sidebar-dates > div > strong {
+      color: var(--text);
+      font-weight: 500;
+      text-align: right;
+      font-size: 0.83rem;
+    }
+
+    /* ── PRICE ROWS ─────────────────────────────────────────── */
+    .sidebar-price-breakdown {
+      background: var(--cream);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .price-row--total {
+      border-top: 1px solid var(--border);
+      padding-top: 0.6rem;
+      margin-top: 0.2rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--forest);
+    }
+
+    .price-row--total span:last-child {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    /* ── STEP 4 — CONFIRMATION ───────────────────────────────── */
+    .confirm-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      max-width: 780px;
+    }
+
+    .confirm-header {
+      background: var(--forest);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .confirm-ref {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      opacity: 0.7;
+    }
+
+    .confirm-ref-value {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+    }
+
+    .confirm-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 620px) {
+      .confirm-body { grid-template-columns: 1fr; }
+    }
+
+    .confirm-section {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .confirm-section:nth-child(odd) {
+      border-right: 1px solid var(--border-soft);
+    }
+
+    @media (max-width: 620px) {
+      .confirm-section { border-right: none !important; }
+    }
+
+    .confirm-section h4 {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .confirm-section p {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+      line-height: 1.5;
+    }
+
+    .confirm-section p strong {
+      color: var(--forest);
+    }
+
+    .confirm-section--pricing {
+      grid-column: 1 / -1;
+    }
+
+    .confirm-section--pricing .price-row {
+      max-width: 380px;
+    }
+
+    .confirm-note {
+      background: #fffbf0;
+      border-top: 1px solid #edd9a0;
+      color: #7a5d1a;
+      font-size: 0.83rem;
+      padding: 1rem 2rem;
+      line-height: 1.55;
+    }
+
+    .confirm-actions {
+      padding: 2rem 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border-soft);
+      background: var(--cream);
+    }
+
+    /* ── BREADCRUMB ──────────────────────────────────────────── */
+    .booking-breadcrumb {
+      max-width: 1100px;
+      margin: 0 auto; padding: 1rem 1.5rem 0;
+      font-size: 0.82rem; color: var(--text-muted);
+    }
+    .booking-breadcrumb a {
+      color: var(--forest); text-decoration: none;
+    }
+    .booking-breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb__sep { margin: 0 0.35rem; }
+
+    /* ── IMAGE PLACEHOLDER ──────────────────────────────────── */
+    .img-ph {
+      width: 100%; height: 100%;
+      background: var(--cream-dark) no-repeat center / cover;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-light); font-size: 0.8rem;
+    }
+    .img-ph::after { content: '📷 Room Image'; opacity: 0.5; }
+
+    /* ── NAVIGATION ──────────────────────────────────────────── */
+    .booking-nav {
+      background: var(--forest);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid var(--forest-soft);
+    }
+    .booking-nav__logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .booking-nav__logo span { color: var(--gold-light); }
+    .booking-nav__links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .booking-nav__links a {
+      font-size: 0.78rem;
+      color: var(--gold-pale);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .booking-nav__links a:hover { opacity: 1; color: var(--gold); }
+    .booking-nav__links a.active { color: var(--gold); font-weight: 500; }
+    .booking-nav__cta {
+      font-size: 0.78rem;
+      color: var(--forest);
+      background: var(--gold);
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .booking-nav__cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ── BOOKING FOOTER ──────────────────────────────────────── */
+    .booking-footer {
+      background: var(--forest);
+      text-align: center;
+      padding: 2rem;
+      color: var(--gold-pale);
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .booking-footer a {
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    /* ── UTILITIES ───────────────────────────────────────────── */
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mt-3 { margin-top: 1.5rem; }
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 1rem; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────────── -->
+  <header class="booking-header">
+    <a href="/index.html" class="booking-header__logo">
+      Beechnut <span>·</span> Warri
+    </a>
+    <a href="/index.html" class="booking-header__back">← Back to Hotel</a>
+  </header>
+
+  <!-- ── HERO ───────────────────────────────────────────────── -->
+  <section class="booking-hero">
+    <p class="booking-hero__eyebrow">Reserve Your Stay</p>
+    <h1 class="booking-hero__title">Book a <em>Room</em></h1>
+  </section>
+
+  <!-- ── BREADCRUMB ────────────────────────────────────────── -->
+  <nav class="booking-breadcrumb" aria-label="You are here">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb__sep">›</span>
+    <span>Book a Room</span>
+  </nav>
+
+  <!-- ── NAVIGATION ─────────────────────────────────────────── -->
+  <nav class="booking-nav" role="navigation" aria-label="Page navigation">
+    <div class="booking-nav__inner">
+      <a href="index.html" class="booking-nav__logo">Beechnut <span>·</span> Warri</a>
+      <ul class="booking-nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+        <li><a href="dining.html">Dining</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="booking.html" class="booking-nav__cta">Book Now</a>
+    </div>
+  </nav>
+
+  <!-- ── BOOKING WRAP ────────────────────────────────────────── -->
+  <main id="booking-wrap">
+
+    <div class="step-heading">
+      <p class="step-heading__eyebrow">Our Rooms &amp; Rates</p>
+      <h2 class="step-heading__title">Choose Your <em>Stay</em></h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+        Browse our rooms below. To enquire, fill in the form and we'll get back to you within 24&nbsp;hours.
+      </p>
+    </div>
+
+    <!-- ─── ROOMS GRID ───────────────────────────────────── -->
+    <div id="rooms-grid">
+
+      <div class="room-card">
+        <div class="room-card__image-wrap">
+          <div class="room-card__image img-ph"></div>
+          <span class="room-card__type-badge">Standard</span>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__header">
+            <h3 class="room-card__name">Classic Standard Room</h3>
+            <span class="room-status room-status--available">Available</span>
+          </div>
+          <div class="room-card__meta">
+            <span>🛏 Queen bed</span>
+            <span>👤 2 guests</span>
+            <span>📐 28 m²</span>
+          </div>
+          <p class="room-card__desc">Plush queen bed, Egyptian-cotton linens, en-suite bathroom, writing desk, and climate control.</p>
+          <div class="room-card__pricing">
+            <div class="room-card__price-block">
+              <span class="room-card__rate">₦45,000</span>
+              <span class="room-card__per">/ night</span>
+            </div>
+          </div>
+          <div class="room-card__actions">
+            <a href="booking.html?room=standard-classic" class="btn btn--primary">Book Now</a>
+            <a href="rooms.html" class="btn btn--outline-dark">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card__image-wrap">
+          <div class="room-card__image img-ph"></div>
+          <span class="room-card__type-badge">Standard</span>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__header">
+            <h3 class="room-card__name">Standard Twin Room</h3>
+            <span class="room-status room-status--available">Available</span>
+          </div>
+          <div class="room-card__meta">
+            <span>🛏 Twin singles (2)</span>
+            <span>👤 2 guests</span>
+            <span>📐 28 m²</span>
+          </div>
+          <p class="room-card__desc">Two premium single beds with en-suite bathroom. Ideal for colleagues or family.</p>
+          <div class="room-card__pricing">
+            <div class="room-card__price-block">
+              <span class="room-card__rate">₦48,000</span>
+              <span class="room-card__per">/ night</span>
+            </div>
+          </div>
+          <div class="room-card__actions">
+            <a href="booking.html?room=standard-twin" class="btn btn--primary">Book Now</a>
+            <a href="rooms.html" class="btn btn--outline-dark">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card__image-wrap">
+          <div class="room-card__image img-ph"></div>
+          <span class="room-card__type-badge">Deluxe</span>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__header">
+            <h3 class="room-card__name">Deluxe King Room</h3>
+            <span class="room-status room-status--available">Available</span>
+          </div>
+          <div class="room-card__meta">
+            <span>🛏 King bed</span>
+            <span>👤 2 guests</span>
+            <span>📐 38 m²</span>
+          </div>
+          <p class="room-card__desc">Generous king bed, premium bath toiletries, stocked minibar, and flat-screen smart TV.</p>
+          <div class="room-card__pricing">
+            <div class="room-card__price-block">
+              <span class="room-card__rate">₦75,000</span>
+              <span class="room-card__per">/ night</span>
+            </div>
+          </div>
+          <div class="room-card__actions">
+            <a href="booking.html?room=deluxe-king" class="btn btn--primary">Book Now</a>
+            <a href="rooms.html" class="btn btn--outline-dark">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card__image-wrap">
+          <div class="room-card__image img-ph"></div>
+          <span class="room-card__type-badge">Suite</span>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__header">
+            <h3 class="room-card__name">Executive Suite</h3>
+            <span class="room-status room-status--available">Available</span>
+          </div>
+          <div class="room-card__meta">
+            <span>🛏 King bed</span>
+            <span>👤 2 guests</span>
+            <span>📐 58 m²</span>
+          </div>
+          <p class="room-card__desc">Separate lounge, marble bathroom with soaking tub, complimentary breakfast.</p>
+          <div class="room-card__pricing">
+            <div class="room-card__price-block">
+              <span class="room-card__rate">₦120,000</span>
+              <span class="room-card__per">/ night</span>
+            </div>
+          </div>
+          <div class="room-card__actions">
+            <a href="booking.html?room=suite-executive" class="btn btn--primary">Book Now</a>
+            <a href="rooms.html" class="btn btn--outline-dark">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card__image-wrap">
+          <div class="room-card__image img-ph"></div>
+          <span class="room-card__type-badge">Suite</span>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__header">
+            <h3 class="room-card__name">Deluxe Suite</h3>
+            <span class="room-status room-status--available">Available</span>
+          </div>
+          <div class="room-card__meta">
+            <span>🛏 King bed</span>
+            <span>👤 2–3 guests</span>
+            <span>📐 72 m²</span>
+          </div>
+          <p class="room-card__desc">City skyline views, private dining area, walk-in wardrobe, priority concierge.</p>
+          <div class="room-card__pricing">
+            <div class="room-card__price-block">
+              <span class="room-card__rate">₦160,000</span>
+              <span class="room-card__per">/ night</span>
+            </div>
+          </div>
+          <div class="room-card__actions">
+            <a href="booking.html?room=suite-deluxe" class="btn btn--primary">Book Now</a>
+            <a href="rooms.html" class="btn btn--outline-dark">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-card__image-wrap">
+          <div class="room-card__image img-ph"></div>
+          <span class="room-card__type-badge">Presidential</span>
+        </div>
+        <div class="room-card__body">
+          <div class="room-card__header">
+            <h3 class="room-card__name">Presidential Suite</h3>
+            <span class="room-status room-status--available">Available</span>
+          </div>
+          <div class="room-card__meta">
+            <span>🛏 King + King</span>
+            <span>👤 Up to 4 guests</span>
+            <span>📐 140 m²</span>
+          </div>
+          <p class="room-card__desc">Two master bedrooms, grand living room, butler service, all meals included.</p>
+          <div class="room-card__pricing">
+            <div class="room-card__price-block">
+              <span class="room-card__rate">₦350,000</span>
+              <span class="room-card__per">/ night</span>
+            </div>
+          </div>
+          <div class="room-card__actions">
+            <a href="booking.html?room=presidential" class="btn btn--primary">Book Now</a>
+            <a href="rooms.html" class="btn btn--outline-dark">View Details</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ─── ENQUIRY FORM ────────────────────────────────── -->
+    <div style="max-width: 780px; margin: 3rem auto 0;">
+      <div class="step-heading" style="text-align: center;">
+        <p class="step-heading__eyebrow">Get In Touch</p>
+        <h2 class="step-heading__title">Send Us an <em>Enquiry</em></h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
+          Have a question about our rooms, rates, or availability? Drop us a message and we'll reply within 24&nbsp;hours.
+        </p>
+      </div>
+
+      <div class="guest-form-card" style="max-width: 600px; margin: 0 auto;">
+        <form action="contact.html" method="get">
+          <p class="form-section-title">Your Details</p>
+
+          <div class="date-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="enq-name">Your Name <span>*</span></label>
+              <input type="text" id="enq-name" class="form-input" placeholder="e.g. Emeka Okafor" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="enq-email">Email Address <span>*</span></label>
+              <input type="email" id="enq-email" class="form-input" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="date-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label" for="enq-phone">Phone Number</label>
+              <input type="tel" id="enq-phone" class="form-input" placeholder="+234 800 000 0000" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="enq-room">Room of Interest</label>
+              <select id="enq-room" class="form-select">
+                <option value="">Select a room…</option>
+                <option value="standard-classic">Classic Standard Room</option>
+                <option value="standard-twin">Standard Twin Room</option>
+                <option value="deluxe-king">Deluxe King Room</option>
+                <option value="suite-executive">Executive Suite</option>
+                <option value="suite-deluxe">Deluxe Suite</option>
+                <option value="presidential">Presidential Suite</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label class="form-label" for="enq-checkin">Preferred Check-in Date</label>
+            <input type="date" id="enq-checkin" class="form-input" />
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="enq-message">Your Message <span>*</span></label>
+            <textarea id="enq-message" class="form-textarea" placeholder="Tell us about your requirements — number of guests, stay duration, special requests…" required></textarea>
+          </div>
+
+          <div class="guest-form-actions">
+            <button type="submit" class="btn btn--primary btn--lg">
+              Send Enquiry →
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main><!-- /#booking-wrap -->
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="booking-footer">
+    <p>
+      &copy; <span id="year">2025</span> Beechnut Hotel Warri &nbsp;&middot;&nbsp;
+      For assistance call or WhatsApp our reservations team
+    </p>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

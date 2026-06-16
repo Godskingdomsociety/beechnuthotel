@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get in touch with Beechnut Hotel Warri. Find our address, phone number, email, opening hours, and send us a message. We'd love to hear from you." />
+  <title>Contact Us – Beechnut Hotel Warri | Luxury Hospitality in the Niger Delta</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Site stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─── CSS Variables ───────────────────────────────────────────── */
+    :root {
+      --navy:      #0F1B2D;
+      --navy-mid:  #162238;
+      --navy-light:#1E3050;
+      --gold:      #C9A84C;
+      --gold-light:#DFC07A;
+      --gold-dark: #A8872E;
+      --offwhite:  #F9F6F0;
+      --offwhite2: #EDE9E1;
+      --text-dark: #1A1A2E;
+      --text-mid:  #4A4A5A;
+      --white:     #FFFFFF;
+
+      --font-serif:   'Cormorant Garamond', Georgia, serif;
+      --font-display: 'Playfair Display', serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-card: 0 4px 32px rgba(15,27,45,0.12);
+      --shadow-hover: 0 12px 48px rgba(15,27,45,0.22);
+    }
+
+    /* ─── Reset / Base ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--offwhite);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── Navbar ──────────────────────────────────────────────────── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(15,27,45,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .navbar.scrolled {
+      background: var(--navy);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo .logo-main {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .nav-logo .logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: rgba(249,246,240,0.55);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(249,246,240,0.75);
+      padding: 0.5rem 0.7rem;
+      border-radius: 3px;
+      position: relative;
+      white-space: nowrap;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 50%; right: 50%;
+      height: 1px;
+      background: var(--gold);
+      transition: left var(--transition), right var(--transition);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      left: 0.7rem; right: 0.7rem;
+    }
+    .nav-links .nav-book-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      padding: 0.55rem 1.15rem;
+      border-radius: 3px;
+      margin-left: 0.6rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-links .nav-book-btn::after { display: none; }
+    .nav-links .nav-book-btn:hover {
+      background: var(--gold-light);
+      color: var(--navy);
+      transform: translateY(-1px);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--offwhite);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ─── Hero Banner ─────────────────────────────────────────────── */
+    .hero-banner {
+      position: relative;
+      height: 60vh;
+      min-height: 380px;
+      background: var(--navy);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    /* Decorative geometric lines */
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(201,168,76,0.04) 100%);
+      border-left: 1px solid rgba(201,168,76,0.08);
+      pointer-events: none;
+    }
+    .hero-geo {
+      position: absolute;
+      top: 3rem; right: 4rem;
+      width: 220px; height: 220px;
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: heroRotate 40s linear infinite;
+    }
+    .hero-geo::before {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(201,168,76,0.07);
+      border-radius: 50%;
+    }
+    @keyframes heroRotate {
+      to { transform: rotate(360deg); }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem 3.5rem;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 400;
+      color: var(--offwhite);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: rgba(249,246,240,0.5);
+      letter-spacing: 0.06em;
+    }
+    .breadcrumb a {
+      color: rgba(249,246,240,0.5);
+      transition: color var(--transition);
+    }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb .sep { color: rgba(201,168,76,0.4); }
+    .breadcrumb .current { color: var(--gold); }
+
+    /* ─── Section Base ────────────────────────────────────────────── */
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--gold);
+    }
+
+    /* ─── Contact Main Section ────────────────────────────────────── */
+    .contact-section {
+      padding: 6rem 0 5rem;
+      background: var(--offwhite);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* Left column – hotel details */
+    .contact-info {
+      position: sticky;
+      top: 100px;
+    }
+    .contact-info-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+    .contact-info-heading em {
+      font-style: italic;
+      color: var(--gold-dark);
+    }
+    .contact-intro {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+      max-width: 400px;
+    }
+    .contact-detail-group {
+      margin-bottom: 2rem;
+    }
+    .contact-detail-item {
+      display: flex;
+      gap: 1.1rem;
+      align-items: flex-start;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(15,27,45,0.07);
+    }
+    .contact-detail-item:first-child { border-top: 1px solid rgba(15,27,45,0.07); }
+    .detail-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .detail-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .detail-body {}
+    .detail-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 0.2rem;
+    }
+    .detail-value {
+      font-family: var(--font-serif);
+      font-size: 1.02rem;
+      color: var(--navy);
+      line-height: 1.6;
+    }
+    .detail-value a {
+      color: var(--navy);
+      transition: color var(--transition);
+    }
+    .detail-value a:hover { color: var(--gold-dark); }
+
+    /* Hours table */
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 1.5rem;
+      margin-top: 0.3rem;
+    }
+    .hours-row {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--navy);
+    }
+    .hours-row .day { color: var(--text-mid); font-size: 0.88rem; }
+
+    /* Social row */
+    .contact-social {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(15,27,45,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .social-link svg {
+      width: 16px; height: 16px;
+      fill: var(--text-mid);
+      transition: fill var(--transition);
+    }
+    .social-link:hover {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .social-link:hover svg { fill: var(--gold); }
+
+    /* Right column – form */
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 3rem 3rem 3.5rem;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    .form-heading {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .form-sub {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      margin-bottom: 2.2rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.35rem;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--font-body);
+      font-size: 0.93rem;
+      color: var(--text-dark);
+      background: var(--offwhite);
+      border: 1.5px solid rgba(15,27,45,0.1);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      resize: vertical;
+      -webkit-appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A4A5A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+    }
+    .form-group textarea { min-height: 130px; }
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .form-check input[type="checkbox"] {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--gold-dark);
+      cursor: pointer;
+    }
+    .form-check label {
+      font-size: 0.83rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .form-check label a { color: var(--gold-dark); text-decoration: underline; }
+    .btn-submit {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.15);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+    .btn-submit:hover::before { opacity: 1; }
+    .btn-submit:active { transform: translateY(0); }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--navy);
+    }
+    .form-success .success-icon {
+      width: 56px; height: 56px;
+      background: rgba(201,168,76,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .form-success .success-icon svg {
+      width: 26px; height: 26px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-success p { font-size: 0.9rem; color: var(--text-mid); }
+
+    /* ─── Map Section ─────────────────────────────────────────────── */
+    .map-section {
+      padding: 0 0 6rem;
+      background: var(--offwhite);
+    }
+    .map-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .map-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .map-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--navy);
+    }
+    .map-open-link {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap var(--transition);
+    }
+    .map-open-link:hover { gap: 0.8rem; }
+    .map-open-link svg {
+      width: 14px; height: 14px;
+      stroke: var(--gold-dark);
+      fill: none;
+      stroke-width: 2;
+    }
+    .map-frame {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.15);
+      box-shadow: var(--shadow-card);
+      height: 420px;
+      background: var(--navy-mid);
+      position: relative;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    /* Placeholder overlay if iframe fails */
+    .map-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: var(--navy-mid);
+      color: rgba(249,246,240,0.5);
+      font-size: 0.88rem;
+      pointer-events: none;
+    }
+    .map-placeholder svg {
+      width: 40px; height: 40px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.4;
+    }
+
+    /* ─── Directions Section ──────────────────────────────────────── */
+    .directions-section {
+      padding: 5rem 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .directions-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      border: 1px solid rgba(201,168,76,0.06);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .directions-section::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 300px; height: 300px;
+      border: 1px solid rgba(201,168,76,0.04);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .dir-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .dir-header { text-align: center; margin-bottom: 3.5rem; }
+    .dir-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .dir-label::before, .dir-label::after {
+      content: '';
+      display: block;
+      width: 22px; height: 1px;
+      background: var(--gold);
+    }
+    .dir-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--offwhite);
+      line-height: 1.2;
+    }
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .dir-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 14px;
+      padding: 2.25rem 2rem;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .dir-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(201,168,76,0.25);
+      transform: translateY(-4px);
+    }
+    .dir-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.18) 0%, rgba(201,168,76,0.08) 100%);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .dir-icon svg {
+      width: 24px; height: 24px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .dir-card-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      margin-bottom: 1rem;
+    }
+    .dir-card p {
+      font-size: 0.88rem;
+      color: rgba(249,246,240,0.65);
+      line-height: 1.85;
+    }
+    .dir-card p strong {
+      color: rgba(249,246,240,0.9);
+      font-weight: 500;
+    }
+    .dir-note {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ─── WhatsApp CTA Section ────────────────────────────────────── */
+    .whatsapp-cta {
+      padding: 5rem 0;
+      background: var(--offwhite2);
+    }
+    .wa-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .wa-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 3.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(201,168,76,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .wa-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(37,211,102,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .wa-content { flex: 1; }
+    .wa-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(37,211,102,0.1);
+      border: 1px solid rgba(37,211,102,0.2);
+      color: #1a7a45;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.1rem;
+    }
+    .wa-tag .dot {
+      width: 7px; height: 7px;
+      background: #25D366;
+      border-radius: 50%;
+      animation: waPulse 2s ease-in-out infinite;
+    }
+    @keyframes waPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.6; transform: scale(0.8); }
+    }
+    .wa-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .wa-desc {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 520px;
+    }
+    .wa-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: #25D366;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .wa-cta-btn svg {
+      width: 22px; height: 22px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+    .wa-cta-btn:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(37,211,102,0.3);
+    }
+
+    /* ─── Footer ──────────────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      padding: 5rem 0 0;
+      border-top: 1px solid rgba(201,168,76,0.12);
+    }
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer-brand .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+    }
+    .footer-brand .footer-tagline {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(249,246,240,0.4);
+      margin-bottom: 1.4rem;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: rgba(249,246,240,0.5);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+      max-width: 260px;
+    }
+    .footer-awards {
+      display: flex;
+      gap: 1rem;
+    }
+    .award-badge {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 8px;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+    .footer-col ul li {
+      margin-bottom: 0.65rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: rgba(249,246,240,0.55);
+      transition: color var(--transition), padding-left var(--transition);
+      display: inline-block;
+    }
+    .footer-col ul li a:hover {
+      color: var(--gold);
+      padding-left: 4px;
+    }
+    .footer-contact-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .footer-contact-item svg {
+      width: 15px; height: 15px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.8;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .footer-contact-item span {
+      font-size: 0.83rem;
+      color: rgba(249,246,240,0.55);
+      line-height: 1.6;
+    }
+    .footer-contact-item span a {
+      color: rgba(249,246,240,0.55);
+      transition: color var(--transition);
+    }
+    .footer-contact-item span a:hover { color: var(--gold); }
+    .footer-social {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .footer-social a svg {
+      width: 15px; height: 15px;
+      fill: rgba(249,246,240,0.5);
+      transition: fill var(--transition);
+    }
+    .footer-social a:hover {
+      background: rgba(201,168,76,0.15);
+      border-color: var(--gold);
+    }
+    .footer-social a:hover svg { fill: var(--gold); }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(201,168,76,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: rgba(249,246,240,0.3);
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-bottom-links a {
+      font-size: 0.75rem;
+      color: rgba(249,246,240,0.3);
+      transition: color var(--transition);
+    }
+    .footer-bottom-links a:hover { color: var(--gold); }
+
+    /* ─── WhatsApp Float ──────────────────────────────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+    }
+    .whatsapp-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .whatsapp-float a:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+    }
+    .whatsapp-float svg {
+      width: 30px; height: 30px;
+      fill: #fff;
+    }
+    .wa-tooltip {
+      position: absolute;
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--navy);
+      color: var(--offwhite);
+      font-size: 0.78rem;
+      white-space: nowrap;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--transition), right var(--transition);
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .whatsapp-float:hover .wa-tooltip { opacity: 1; right: 72px; }
+
+    /* ─── Animations ──────────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 76px; left: 0; right: 0;
+        background: var(--navy);
+        padding: 1.25rem 2rem 1.75rem;
+        border-top: 1px solid rgba(201,168,76,0.1);
+        align-items: flex-start;
+        gap: 0.2rem;
+      }
+      .nav-links.open a { font-size: 0.82rem; padding: 0.6rem 0.5rem; }
+      .nav-links.open .nav-book-btn {
+        margin-left: 0;
+        margin-top: 0.75rem;
+        padding: 0.65rem 1.5rem;
+        font-size: 0.78rem;
+      }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 1024px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-info { position: static; }
+      .dir-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .dir-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .wa-card { flex-direction: column; padding: 2.5rem 2rem; text-align: center; }
+      .wa-cta-btn { width: 100%; justify-content: center; }
+      .contact-form-wrap { padding: 2rem 1.5rem 2.5rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-content { padding-bottom: 2.5rem; }
+      .section-container, .map-inner, .dir-inner, .wa-inner, .footer-grid { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Beechnut Hotel Warri – Home">
+        <span class="logo-main">Beechnut Hotel</span>
+        <span class="logo-sub">Warri, Nigeria</span>
+      </a>
+
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+        <li><a href="facilities.html">Facilities</a></li>
+        <li><a href="dining.html">Dining</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+        <li><a href="booking.html" class="nav-book-btn">Book a Room</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HERO BANNER
+  ════════════════════════════════════════════════ -->
+  <header class="hero-banner" role="banner">
+    <div class="hero-geo" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Get In Touch</span>
+      <h1 class="hero-title">Contact <em>Us</em></h1>
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep" aria-hidden="true">›</span>
+        <span class="current">Contact</span>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACT MAIN — 2 COLUMN
+  ════════════════════════════════════════════════ -->
+  <section class="contact-section" aria-labelledby="contact-heading">
+    <div class="section-container">
+      <div class="contact-grid">
+
+        <!-- ── Left: Hotel Details ── -->
+        <div class="contact-info fade-up">
+          <span class="section-label">Reach Us</span>
+          <h2 class="contact-info-heading" id="contact-heading">
+            We're Here<br/>to <em>Help You</em>
+          </h2>
+          <p class="contact-intro">
+            <!-- TODO: Replace with real content -->
+            Whether you're planning a stay, hosting an event, or simply have a question, our hospitality team is ready to assist. Reach us through any channel that suits you.
+          </p>
+
+          <div class="contact-detail-group">
+
+            <!-- Address -->
+            <div class="contact-detail-item">
+              <div class="detail-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div class="detail-body">
+                <p class="detail-label">Address</p>
+                <p class="detail-value">
+                  <!-- TODO: Replace with real content -->
+                  No. [Street Address],<br/>
+                  [Neighbourhood], Warri,<br/>
+                  Delta State, Nigeria
+                </p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-detail-item">
+              <div class="detail-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              </div>
+              <div class="detail-body">
+                <p class="detail-label">Phone</p>
+                <p class="detail-value">
+                  <!-- TODO: Replace with real content -->
+                  <a href="tel:+2348000000000">+234 800 000 0000</a><br/>
+                  <a href="tel:+2348000000001">+234 800 000 0001</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-detail-item">
+              <div class="detail-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="detail-body">
+                <p class="detail-label">Email</p>
+                <p class="detail-value">
+                  <!-- TODO: Replace with real content -->
+                  <a href="mailto:reservations@beechnuthotelwarri.com">reservations@beechnuthotelwarri.com</a><br/>
+                  <a href="mailto:info@beechnuthotelwarri.com">info@beechnuthotelwarri.com</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Opening Hours -->
+            <div class="contact-detail-item">
+              <div class="detail-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="detail-body">
+                <p class="detail-label">Opening Hours</p>
+                <div class="hours-grid">
+                  <!-- TODO: Replace with real content -->
+                  <span class="hours-row"><span class="day">Front Desk</span></span>
+                  <span class="hours-row">24 hours, 7 days</span>
+                  <span class="hours-row"><span class="day">Restaurant</span></span>
+                  <span class="hours-row">6:30 AM – 10:30 PM</span>
+                  <span class="hours-row"><span class="day">Bar & Lounge</span></span>
+                  <span class="hours-row">12:00 PM – 1:00 AM</span>
+                  <span class="hours-row"><span class="day">Pool Deck</span></span>
+                  <span class="hours-row">7:00 AM – 9:00 PM</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /.contact-detail-group -->
+
+          <!-- Social Links -->
+          <div class="contact-social" aria-label="Social media links">
+            <!-- Facebook -->
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5" stroke-width="2.5"/></svg>
+            </a>
+            <!-- Twitter/X -->
+            <a href="#" class="social-link" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div><!-- /.contact-info -->
+
+
+        <!-- ── Right: Contact Form ── -->
+        <div class="contact-form-wrap fade-up" style="transition-delay:0.15s">
+          <h3 class="form-heading">Send a Message</h3>
+          <p class="form-sub">
+            <!-- TODO: Replace with real content -->
+            We typically respond within 2 business hours. For urgent enquiries, please call us directly.
+          </p>
+
+          <!-- FormSubmit.co form — replace YOUR_EMAIL with actual address -->
+          <form
+            id="contactForm"
+            action="https://formsubmit.co/<!-- TODO: Replace with real content -->"
+            method="POST"
+            novalidate
+          >
+            <!-- FormSubmit hidden config -->
+            <input type="hidden" name="_subject" value="New Enquiry – Beechnut Hotel Warri" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://<!-- TODO: Replace with real content -->/thank-you.html" />
+            <input type="text"   name="_honey"   style="display:none" tabindex="-1" />
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name <span aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="John"
+                  required
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name <span aria-hidden="true">*</span></label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Doe"
+                  required
+                  autocomplete="family-name"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address <span aria-hidden="true">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@email.com"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+234 800 000 0000"
+                  autocomplete="tel"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject <span aria-hidden="true">*</span></label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a topic…</option>
+                <option value="Room Reservation">Room Reservation</option>
+                <option value="Event / Conference Enquiry">Event / Conference Enquiry</option>
+                <option value="Dining Reservation">Dining Reservation</option>
+                <option value="Corporate Partnership">Corporate Partnership</option>
+                <option value="Feedback / Complaint">Feedback / Complaint</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message <span aria-hidden="true">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell us how we can help…"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="consent" name="consent" required />
+              <label for="consent">
+                I agree to the <a href="#">Privacy Policy</a> and consent to Beechnut Hotel Warri processing my data to respond to this enquiry.
+              </label>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              Send Message →
+            </button>
+          </form>
+
+          <!-- Success state (shown via JS after submit) -->
+          <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+            <div class="success-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Message Received!</h3>
+            <p>
+              <!-- TODO: Replace with real content -->
+              Thank you for reaching out. A member of our team will be in touch with you within 2 business hours.
+            </p>
+          </div>
+
+        </div><!-- /.contact-form-wrap -->
+
+      </div><!-- /.contact-grid -->
+    </div><!-- /.section-container -->
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       GOOGLE MAPS EMBED
+  ════════════════════════════════════════════════ -->
+  <section class="map-section" aria-labelledby="map-heading">
+    <div class="map-inner">
+      <div class="map-header">
+        <div>
+          <span class="section-label">Find Us</span>
+          <h2 class="map-title" id="map-heading">Our Location in Warri</h2>
+        </div>
+        <a
+          href="https://maps.google.com/?q=<!-- TODO: Replace with real content -->"
+          class="map-open-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open in Google Maps"
+        >
+          Open in Maps
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+
+      <div class="map-frame" role="region" aria-label="Map showing hotel location">
+        <!--
+          TODO: Replace with real content
+          Replace the src with a real Google Maps embed URL:
+          https://www.google.com/maps/embed?pb=...
+          Get it from: maps.google.com → Share → Embed a map
+          Placeholder uses approximate Warri, Nigeria coordinates: 5.5167° N, 5.7500° E
+        -->
+        <iframe
+          title="Beechnut Hotel Warri Location Map"
+          src="https://maps.google.com/maps?q=5.5167,5.7500&z=15&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <div class="map-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span><!-- TODO: Replace with real content --> Map loading…</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       DIRECTIONS
+  ════════════════════════════════════════════════ -->
+  <section class="directions-section" aria-labelledby="dir-heading">
+    <div class="dir-inner">
+      <div class="dir-header">
+        <p class="dir-label">Getting Here</p>
+        <h2 class="dir-title" id="dir-heading">Directions to Beechnut Hotel</h2>
+      </div>
+
+      <div class="dir-grid">
+
+        <!-- By Road -->
+        <article class="dir-card fade-up">
+          <div class="dir-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3 class="dir-card-title">By Road</h3>
+          <p>
+            <!-- TODO: Replace with real content -->
+            <strong>From Benin City:</strong> Take the Benin–Warri Expressway for approximately 120 km. On reaching Warri, take the [Junction Name] exit and proceed along [Road Name] for [X] km. The hotel will be on your [left/right].
+          </p>
+          <p style="margin-top:0.75rem">
+            <!-- TODO: Replace with real content -->
+            <strong>From Lagos:</strong> Via the East–West Road, follow signage through Agbor and Sapele. Enter Warri from the [direction] and follow directions above from the expressway.
+          </p>
+          <p class="dir-note">
+            <!-- TODO: Replace with real content -->
+            Estimated travel time from Benin City: approx. [X] hours depending on traffic.
+          </p>
+        </article>
+
+        <!-- By Air -->
+        <article class="dir-card fade-up" style="transition-delay:0.1s">
+          <div class="dir-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M22 16.21v-1.895l-10-6V3.5a1.5 1.5 0 00-3 0v4.815l-10 6V16.21l10-3.263V18l-2.5 1.5V21l4.5-1.5 4.5 1.5v-1.5L13 18v-5.053l10 3.263z"/></svg>
+          </div>
+          <h3 class="dir-card-title">By Air</h3>
+          <p>
+            <!-- TODO: Replace with real content -->
+            The nearest airport is <strong>Osubi Airport (QRW)</strong>, Warri — approximately [X] km from the hotel. Domestic flights operate from Lagos (LOS), Abuja (ABV), and Port Harcourt (PHC).
+          </p>
+          <p style="margin-top:0.75rem">
+            <!-- TODO: Replace with real content -->
+            From the airport, take a taxi or arrange a hotel shuttle. Journey time is approximately [X] minutes. Contact us in advance to arrange complimentary airport transfers for eligible bookings.
+          </p>
+          <p class="dir-note">
+            <!-- TODO: Replace with real content -->
+            Hotel airport transfers available — please enquire at booking.
+          </p>
+        </article>
+
+        <!-- By Water / Local -->
+        <article class="dir-card fade-up" style="transition-delay:0.2s">
+          <div class="dir-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="dir-card-title">Local Navigation</h3>
+          <p>
+            <!-- TODO: Replace with real content -->
+            Once in Warri, the hotel is located in the [neighbourhood] district. Key landmarks nearby include [Landmark 1] and [Landmark 2], which can be used as reference points.
+          </p>
+          <p style="margin-top:0.75rem">
+            <!-- TODO: Replace with real content -->
+            Ride-hailing services (Bolt, inDrive) are available across Warri. Simply share our address: [Full Address], and your driver will navigate directly to our entrance on [Street Name].
+          </p>
+          <p class="dir-note">
+            <!-- TODO: Replace with real content -->
+            Secure on-site parking is available for guests.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       WHATSAPP CTA
+  ════════════════════════════════════════════════ -->
+  <section class="whatsapp-cta" aria-labelledby="wa-heading">
+    <div class="wa-inner">
+      <div class="wa-card fade-up">
+        <div class="wa-content">
+          <span class="wa-tag">
+            <span class="dot" aria-hidden="true"></span>
+            Available Now
+          </span>
+          <h2 class="wa-headline" id="wa-heading">Prefer to Chat on WhatsApp?</h2>
+          <p class="wa-desc">
+            <!-- TODO: Replace with real content -->
+            Our reservations team is on WhatsApp for quick responses. Send us your enquiry and we'll get back to you instantly — from room availability to event planning, we're just a message away.
+          </p>
+        </div>
+        <a
+          href="https://wa.me/<!-- TODO: Replace with real content -->?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20Beechnut%20Hotel%20Warri."
+          class="wa-cta-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat with us on WhatsApp"
+        >
+          <!-- WhatsApp SVG icon -->
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16.004 0C7.163 0 0 7.163 0 16c0 2.822.736 5.47 2.024 7.776L.07 31.285a.75.75 0 00.927.928l7.647-1.944A15.93 15.93 0 0016.004 32C24.837 32 32 24.837 32 16S24.837 0 16.004 0zm0 2.909A13.09 13.09 0 0129.091 16 13.09 13.09 0 0116.004 29.09c-2.595 0-5.016-.76-7.052-2.072l-.393-.253-4.538 1.153 1.174-4.406-.271-.414A13.04 13.04 0 012.91 16 13.09 13.09 0 0116.004 2.91zm-4.26 6.437c-.33 0-.86.124-1.31.617-.45.493-1.72 1.68-1.72 4.1s1.76 4.76 2.01 5.09c.246.326 3.46 5.28 8.4 7.2 1.16.447 2.07.714 2.776.914.735.212 1.404.182 1.932.11.59-.079 1.814-.742 2.07-1.458.257-.717.257-1.332.18-1.46-.077-.129-.284-.206-.595-.36-.312-.155-1.848-.912-2.135-1.016-.286-.103-.494-.155-.703.154-.208.31-.807 1.016-.988 1.225-.182.207-.362.232-.673.077-.31-.155-1.31-.483-2.494-1.54-.921-.822-1.544-1.836-1.725-2.147-.181-.31-.02-.478.137-.632.14-.139.312-.362.467-.543.155-.18.207-.31.31-.517.103-.206.052-.387-.026-.542-.077-.155-.703-1.693-.963-2.318-.253-.61-.51-.527-.703-.537-.181-.01-.39-.012-.598-.012z"/>
+          </svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER — 4 COLUMN
+  ════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+
+      <!-- Col 1: Brand -->
+      <div class="footer-brand">
+        <p class="footer-logo">Beechnut Hotel</p>
+        <p class="footer-tagline">Warri, Nigeria</p>
+        <p>
+          <!-- TODO: Replace with real content -->
+          A sanctuary of refined luxury in the heart of Warri, where Southern Nigerian warmth meets international hospitality standards.
+        </p>
+        <div class="footer-awards">
+          <span class="award-badge"><!-- TODO: Replace with real content --> Rated ★★★★</span>
+          <span class="award-badge"><!-- TODO: Replace with real content --> Est. [Year]</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div class="footer-col">
+        <p class="footer-col-title">Explore</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="dining.html">Dining</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Services -->
+      <div class="footer-col">
+        <p class="footer-col-title">Services</p>
+        <ul>
+          <!-- TODO: Replace with real content -->
+          <li><a href="#">Conference &amp; Events</a></li>
+          <li><a href="#">Swimming Pool</a></li>
+          <li><a href="#">Business Centre</a></li>
+          <li><a href="#">Airport Transfers</a></li>
+          <li><a href="#">Laundry Service</a></li>
+          <li><a href="#">Room Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div class="footer-col">
+        <p class="footer-col-title">Contact</p>
+
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span>
+            <!-- TODO: Replace with real content -->
+            No. [Street], [Area],<br/>Warri, Delta State
+          </span>
+        </div>
+
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          <span>
+            <!-- TODO: Replace with real content -->
+            <a href="tel:+2348000000000">+234 800 000 0000</a>
+          </span>
+        </div>
+
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>
+            <!-- TODO: Replace with real content -->
+            <a href="mailto:info@beechnuthotelwarri.com">info@beechnuthotelwarri.com</a>
+          </span>
+        </div>
+
+        <div class="footer-social" aria-label="Social media">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5" stroke-width="3"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /.footer-grid -->
+
+    <div class="footer-bottom">
+      <p>
+        <!-- TODO: Replace with real content -->
+        &copy; <span id="footerYear"></span> Beechnut Hotel Warri. All rights reserved.
+      </p>
+      <nav class="footer-bottom-links" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════
+       WHATSAPP FLOATING BUTTON
+  ════════════════════════════════════════════════ -->
+  <div class="whatsapp-float" role="complementary" aria-label="WhatsApp quick contact">
+    <span class="wa-tooltip">Chat with us</span>
+    <a
+      href="https://wa.me/<!-- TODO: Replace with real content -->?text=Hello%20Beechnut%20Hotel%20Warri%2C%20I%27d%20like%20to%20make%20an%20enquiry."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Beechnut Hotel Warri on WhatsApp"
+    >
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M16.004 0C7.163 0 0 7.163 0 16c0 2.822.736 5.47 2.024 7.776L.07 31.285a.75.75 0 00.927.928l7.647-1.944A15.93 15.93 0 0016.004 32C24.837 32 32 24.837 32 16S24.837 0 16.004 0zm0 2.909A13.09 13.09 0 0129.091 16 13.09 13.09 0 0116.004 29.09c-2.595 0-5.016-.76-7.052-2.072l-.393-.253-4.538 1.153 1.174-4.406-.271-.414A13.04 13.04 0 012.91 16 13.09 13.09 0 0116.004 2.91zm-4.26 6.437c-.33 0-.86.124-1.31.617-.45.493-1.72 1.68-1.72 4.1s1.76 4.76 2.01 5.09c.246.326 3.46 5.28 8.4 7.2 1.16.447 2.07.714 2.776.914.735.212 1.404.182 1.932.11.59-.079 1.814-.742 2.07-1.458.257-.717.257-1.332.18-1.46-.077-.129-.284-.206-.595-.36-.312-.155-1.848-.912-2.135-1.016-.286-.103-.494-.155-.703.154-.208.31-.807 1.016-.988 1.225-.182.207-.362.232-.673.077-.31-.155-1.31-.483-2.494-1.54-.921-.822-1.544-1.836-1.725-2.147-.181-.31-.02-.478.137-.632.14-.139.312-.362.467-.543.155-.18.207-.31.31-.517.103-.206.052-.387-.026-.542-.077-.155-.703-1.693-.963-2.318-.253-.61-.51-.527-.703-.537-.181-.01-.39-.012-.598-.012z"/>
+      </svg>
+    </a>
+  </div>
+
+
+  <script>
+    /* ── Navbar scroll behaviour ── */
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ── Hamburger toggle ── */
+    const hamburger = document.getElementById('navHamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+
+    /* ── Close nav on link click (mobile) ── */
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ── Scroll-reveal (IntersectionObserver) ── */
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    /* ── Footer year ── */
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    /* ── Contact form: client-side validation + success state ── */
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        // Basic HTML5 validation check
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          e.preventDefault();
+          return;
+        }
+
+        // If FormSubmit.co is not yet configured (placeholder email in action),
+        // fall back to mailto as a safety net
+        const action = contactForm.getAttribute('action') || '';
+        if (action.includes('<!-- TODO')) {
+          e.preventDefault();
+          const name    = document.getElementById('firstName').value;
+          const email   = document.getElementById('email').value;
+          const subject = document.getElementById('subject').value;
+          const message = document.getElementById('message').value;
+          const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+          window.location.href = `mailto:info@beechnuthotelwarri.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+          return;
+        }
+
+        // Show success UI (FormSubmit handles the actual POST + redirect,
+        // but if JS intercepts we show this)
+      });
+    }
+  </script>
+
+</body>
+</html>

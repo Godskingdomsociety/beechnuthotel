@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover world-class facilities at Beechnut Hotel Warri — a luxury swimming pool, rejuvenating spa, state-of-the-art gym, professional conference hall, and fully equipped business centre." />
+  <title>Facilities &amp; Amenities | Beechnut Hotel Warri</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Site stylesheet (external, user-provided) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─── CSS Custom Properties ─────────────────────────────── */
+    :root {
+      --navy:      #0F1B2D;
+      --navy-mid:  #162236;
+      --navy-light:#1e2f47;
+      --gold:      #C9A84C;
+      --gold-light:#e0c47a;
+      --gold-pale: #f5ecd4;
+      --offwhite:  #F9F6F0;
+      --text-dark: #1a1a2e;
+      --text-muted:#6b7280;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-serif:   'Cormorant Garamond', Georgia, serif;
+      --font-sans:    'DM Sans', sans-serif;
+      --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius:       4px;
+      --section-gap:  120px;
+    }
+
+    /* ─── Reset / Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--offwhite);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── NAVBAR ────────────────────────────────────────────── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      transition: box-shadow var(--transition);
+    }
+    .navbar.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.35); }
+
+    .navbar__brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .navbar__brand-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    .navbar__brand-sub {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 300;
+      color: rgba(249,246,240,0.55);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .navbar__nav {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      align-items: center;
+    }
+    .navbar__nav a {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(249,246,240,0.7);
+      padding-bottom: 3px;
+      border-bottom: 1.5px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .navbar__nav a:hover,
+    .navbar__nav a.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .navbar__cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      border-bottom: none !important;
+      padding: 10px 22px !important;
+      border-radius: var(--radius);
+      font-weight: 600 !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+    .navbar__cta:hover {
+      background: var(--gold-light) !important;
+      transform: translateY(-1px);
+    }
+
+    .navbar__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .navbar__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 60vh;
+      min-height: 380px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(15,27,45,0.72) 0%, rgba(15,27,45,0.45) 60%, rgba(201,168,76,0.12) 100%),
+        /* Placeholder gradient standing in for a real hero image */
+        linear-gradient(135deg, #0F1B2D 0%, #1e3a5f 40%, #162236 70%, #0a1520 100%);
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    .hero__bg.parallax-ready { transform: scale(1); }
+
+    /* Decorative gold line pattern */
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 60px,
+          rgba(201,168,76,0.04) 60px,
+          rgba(201,168,76,0.04) 61px
+        );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 48px 56px;
+      width: 100%;
+    }
+    .hero__breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(249,246,240,0.55);
+      margin-bottom: 18px;
+    }
+    .hero__breadcrumb a { color: var(--gold-light); transition: color var(--transition); }
+    .hero__breadcrumb a:hover { color: var(--gold); }
+    .hero__breadcrumb-sep { color: rgba(201,168,76,0.4); font-size: 0.65rem; }
+
+    .hero__eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--offwhite);
+      line-height: 1.08;
+      max-width: 620px;
+    }
+    .hero__title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero__rule {
+      margin-top: 24px;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    /* ─── SECTION SHARED ────────────────────────────────────── */
+    .facility-section {
+      padding: var(--section-gap) 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .facility-section--reverse { direction: rtl; }
+    .facility-section--reverse > * { direction: ltr; }
+
+    /* Dark-band alternate sections */
+    .facility-section-wrap--dark {
+      background: var(--navy);
+    }
+    .facility-section-wrap--dark .facility-section__label,
+    .facility-section-wrap--dark .facility-section__body {
+      color: rgba(249,246,240,0.68);
+    }
+    .facility-section-wrap--dark .facility-section__title {
+      color: var(--offwhite);
+    }
+    .facility-section-wrap--dark .facility-section__rule {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .facility-section-wrap--dark .facility-section__feature {
+      border-color: rgba(201,168,76,0.25);
+      color: rgba(249,246,240,0.6);
+    }
+    .facility-section-wrap--dark .facility-section__feature::before {
+      color: var(--gold);
+    }
+    .facility-section-wrap--dark .facility-btn {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .facility-section-wrap--dark .facility-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .facility-section__image-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+    }
+    .facility-section__image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .facility-section__image-wrap img {
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .facility-section__image-wrap:hover img { transform: scale(1.04); }
+
+    /* Gold corner accent */
+    .facility-section__image-wrap::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 60px;
+      height: 60px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      border-radius: 4px 0 0 0;
+      z-index: 2;
+      opacity: 0.7;
+    }
+
+    /* Placeholder image block (until real photos are supplied) */
+    .facility-section__img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .facility-section-wrap--light .facility-section__img-placeholder {
+      background: linear-gradient(135deg, #d8e4f0 0%, #b8cde0 100%);
+    }
+    .facility-section-wrap--dark .facility-section__img-placeholder {
+      background: linear-gradient(135deg, #162236 0%, #1e2f47 100%);
+    }
+    .img-placeholder__icon {
+      font-size: 2.8rem;
+      opacity: 0.45;
+    }
+    .img-placeholder__label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    .facility-section__text {}
+    .facility-section__label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .facility-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .facility-section__rule {
+      width: 44px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 18px 0 22px;
+    }
+    .facility-section__body {
+      font-family: var(--font-sans);
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .facility-section__features {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      margin-bottom: 32px;
+    }
+    .facility-section__feature {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(15,27,45,0.08);
+    }
+    .facility-section__feature::before {
+      content: '◆';
+      font-size: 0.45rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .facility-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+      padding: 12px 26px;
+      border-radius: var(--radius);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+    .facility-btn:hover {
+      background: var(--navy);
+      color: var(--offwhite);
+      transform: translateY(-2px);
+    }
+    .facility-btn svg {
+      width: 14px;
+      height: 14px;
+      transition: transform var(--transition);
+    }
+    .facility-btn:hover svg { transform: translateX(3px); }
+
+    /* ─── AMENITY STRIP ─────────────────────────────────────── */
+    .amenity-strip {
+      background: var(--navy);
+      padding: 80px 48px;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+    .amenity-strip__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .amenity-strip__header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .amenity-strip__eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .amenity-strip__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--offwhite);
+    }
+    .amenity-strip__rule {
+      width: 44px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 16px auto 0;
+    }
+    .amenity-strip__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 32px;
+    }
+    .amenity-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 16px;
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.025);
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      cursor: default;
+      text-align: center;
+    }
+    .amenity-item:hover {
+      border-color: rgba(201,168,76,0.45);
+      background: rgba(201,168,76,0.06);
+      transform: translateY(-4px);
+    }
+    .amenity-item__icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      filter: drop-shadow(0 0 8px rgba(201,168,76,0.25));
+    }
+    .amenity-item__label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(249,246,240,0.6);
+      line-height: 1.3;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 72px 48px 32px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 56px;
+      max-width: 1400px;
+      margin: 0 auto 56px;
+    }
+    .footer__brand-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .footer__brand-sub {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(249,246,240,0.35);
+      margin-bottom: 18px;
+    }
+    .footer__tagline {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(249,246,240,0.5);
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+    .footer__contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: rgba(249,246,240,0.55);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .footer__contact-item span:first-child { color: var(--gold); font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+    .footer__col-title {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer__links a {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: rgba(249,246,240,0.55);
+      transition: color var(--transition), padding-left var(--transition);
+    }
+    .footer__links a:hover { color: var(--gold-light); padding-left: 4px; }
+
+    .footer__social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .footer__social-link {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: rgba(249,246,240,0.5);
+      transition: border-color var(--transition), color var(--transition), background var(--transition);
+    }
+    .footer__social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    .footer__bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer__copy {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(249,246,240,0.3);
+    }
+    .footer__legal {
+      display: flex;
+      gap: 24px;
+    }
+    .footer__legal a {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: rgba(249,246,240,0.3);
+      transition: color var(--transition);
+    }
+    .footer__legal a:hover { color: var(--gold); }
+
+    /* ─── WHATSAPP FLOAT ────────────────────────────────────── */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.38);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .whatsapp-fab:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.5);
+    }
+    .whatsapp-fab svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+    }
+    .whatsapp-fab__pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.45);
+      animation: wa-pulse 2s ease-out infinite;
+    }
+    @keyframes wa-pulse {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* ─── SCROLL REVEAL ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .facility-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 80px 32px;
+      }
+      .facility-section--reverse { direction: ltr; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .navbar { padding: 0 24px; }
+      .navbar__nav { display: none; }
+      .navbar__nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        padding: 24px;
+        gap: 18px;
+        border-top: 1px solid rgba(201,168,76,0.15);
+      }
+      .navbar__hamburger { display: flex; }
+      .hero__content { padding: 0 24px 40px; }
+      .facility-section { padding: 60px 24px; }
+      .amenity-strip { padding: 60px 24px; }
+      .amenity-strip__grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .footer { padding: 56px 24px 24px; }
+      .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+      .facility-section__features { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .amenity-strip__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar" role="banner">
+    <a href="index.html" class="navbar__brand" aria-label="Beechnut Hotel Warri — Home">
+      <span class="navbar__brand-name">Beechnut Hotel</span>
+      <span class="navbar__brand-sub">Warri, Delta State</span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="navbar__nav" id="navMenu" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+        <li><a href="facilities.html" class="active" aria-current="page">Facilities</a></li>
+        <li><a href="dining.html">Dining</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="booking.html" class="navbar__cta">Book Now</a></li>
+      </ul>
+    </nav>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="hero" aria-label="Facilities page hero">
+    <div class="hero__bg" id="heroBg"></div>
+    <div class="hero__content">
+      <nav class="hero__breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="hero__breadcrumb-sep" aria-hidden="true">›</span>
+        <span aria-current="page">Facilities</span>
+      </nav>
+      <p class="hero__eyebrow">World-Class Amenities</p>
+      <h1 class="hero__title">Our <em>Facilities</em><br>& Amenities</h1>
+      <div class="hero__rule" aria-hidden="true"></div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FACILITY 1 — SWIMMING POOL  (light bg)
+  ═══════════════════════════════════════════════ -->
+  <div class="facility-section-wrap--light">
+    <article class="facility-section" aria-labelledby="pool-title">
+
+      <!-- Image left -->
+      <div class="facility-section__image-wrap reveal">
+        <!-- TODO: Replace with real content -->
+        <!-- Replace <div> below with: <img src="assets/images/facilities/pool.jpg" alt="Beechnut Hotel Warri outdoor swimming pool"> -->
+        <div class="facility-section__img-placeholder" aria-label="Swimming Pool photograph placeholder">
+          <span class="img-placeholder__icon">🏊</span>
+          <span class="img-placeholder__label"><!-- TODO: Replace with real content --></span>
+        </div>
+      </div>
+
+      <!-- Text right -->
+      <div class="facility-section__text reveal reveal-delay-1">
+        <p class="facility-section__label">Leisure &amp; Recreation</p>
+        <h2 class="facility-section__title" id="pool-title">Swimming Pool</h2>
+        <div class="facility-section__rule" aria-hidden="true"></div>
+        <p class="facility-section__body">
+          <!-- TODO: Replace with real content -->
+        </p>
+        <ul class="facility-section__features" aria-label="Pool features">
+          <!-- TODO: Replace with real content -->
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+        </ul>
+        <a href="booking.html" class="facility-btn">
+          Reserve Your Stay
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FACILITY 2 — SPA & WELLNESS  (dark bg, reversed)
+  ═══════════════════════════════════════════════ -->
+  <div class="facility-section-wrap--dark">
+    <article class="facility-section facility-section--reverse" aria-labelledby="spa-title">
+
+      <!-- Image right (reversed via direction:rtl) -->
+      <div class="facility-section__image-wrap reveal">
+        <!-- TODO: Replace with real content -->
+        <!-- Replace <div> below with: <img src="assets/images/facilities/spa.jpg" alt="Beechnut Hotel Warri spa and wellness centre"> -->
+        <div class="facility-section__img-placeholder" aria-label="Spa photograph placeholder">
+          <span class="img-placeholder__icon">🧖</span>
+          <span class="img-placeholder__label"><!-- TODO: Replace with real content --></span>
+        </div>
+      </div>
+
+      <!-- Text left -->
+      <div class="facility-section__text reveal reveal-delay-1">
+        <p class="facility-section__label">Rejuvenation &amp; Wellness</p>
+        <h2 class="facility-section__title" id="spa-title">Spa &amp; Wellness</h2>
+        <div class="facility-section__rule" aria-hidden="true"></div>
+        <p class="facility-section__body">
+          <!-- TODO: Replace with real content -->
+        </p>
+        <ul class="facility-section__features" aria-label="Spa features">
+          <!-- TODO: Replace with real content -->
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+        </ul>
+        <a href="booking.html" class="facility-btn">
+          Book a Treatment
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FACILITY 3 — GYM & FITNESS  (light bg)
+  ═══════════════════════════════════════════════ -->
+  <div class="facility-section-wrap--light">
+    <article class="facility-section" aria-labelledby="gym-title">
+
+      <div class="facility-section__image-wrap reveal">
+        <!-- TODO: Replace with real content -->
+        <!-- Replace <div> below with: <img src="assets/images/facilities/gym.jpg" alt="Beechnut Hotel Warri gym and fitness centre"> -->
+        <div class="facility-section__img-placeholder" aria-label="Gym photograph placeholder">
+          <span class="img-placeholder__icon">🏋️</span>
+          <span class="img-placeholder__label"><!-- TODO: Replace with real content --></span>
+        </div>
+      </div>
+
+      <div class="facility-section__text reveal reveal-delay-1">
+        <p class="facility-section__label">Health &amp; Fitness</p>
+        <h2 class="facility-section__title" id="gym-title">Gym &amp; Fitness Centre</h2>
+        <div class="facility-section__rule" aria-hidden="true"></div>
+        <p class="facility-section__body">
+          <!-- TODO: Replace with real content -->
+        </p>
+        <ul class="facility-section__features" aria-label="Gym features">
+          <!-- TODO: Replace with real content -->
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+        </ul>
+        <a href="booking.html" class="facility-btn">
+          Reserve Your Stay
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FACILITY 4 — CONFERENCE HALL  (dark bg, reversed)
+  ═══════════════════════════════════════════════ -->
+  <div class="facility-section-wrap--dark">
+    <article class="facility-section facility-section--reverse" aria-labelledby="conf-title">
+
+      <div class="facility-section__image-wrap reveal">
+        <!-- TODO: Replace with real content -->
+        <!-- Replace <div> below with: <img src="assets/images/facilities/conference.jpg" alt="Beechnut Hotel Warri conference hall"> -->
+        <div class="facility-section__img-placeholder" aria-label="Conference hall photograph placeholder">
+          <span class="img-placeholder__icon">🎤</span>
+          <span class="img-placeholder__label"><!-- TODO: Replace with real content --></span>
+        </div>
+      </div>
+
+      <div class="facility-section__text reveal reveal-delay-1">
+        <p class="facility-section__label">Events &amp; Conferences</p>
+        <h2 class="facility-section__title" id="conf-title">Conference Hall</h2>
+        <div class="facility-section__rule" aria-hidden="true"></div>
+        <p class="facility-section__body">
+          <!-- TODO: Replace with real content -->
+        </p>
+        <ul class="facility-section__features" aria-label="Conference hall features">
+          <!-- TODO: Replace with real content -->
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+        </ul>
+        <a href="contact.html" class="facility-btn">
+          Enquire About Events
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FACILITY 5 — BUSINESS CENTRE  (light bg)
+  ═══════════════════════════════════════════════ -->
+  <div class="facility-section-wrap--light">
+    <article class="facility-section" aria-labelledby="biz-title">
+
+      <div class="facility-section__image-wrap reveal">
+        <!-- TODO: Replace with real content -->
+        <!-- Replace <div> below with: <img src="assets/images/facilities/business-centre.jpg" alt="Beechnut Hotel Warri business centre"> -->
+        <div class="facility-section__img-placeholder" aria-label="Business centre photograph placeholder">
+          <span class="img-placeholder__icon">💼</span>
+          <span class="img-placeholder__label"><!-- TODO: Replace with real content --></span>
+        </div>
+      </div>
+
+      <div class="facility-section__text reveal reveal-delay-1">
+        <p class="facility-section__label">Productivity &amp; Connectivity</p>
+        <h2 class="facility-section__title" id="biz-title">Business Centre</h2>
+        <div class="facility-section__rule" aria-hidden="true"></div>
+        <p class="facility-section__body">
+          <!-- TODO: Replace with real content -->
+        </p>
+        <ul class="facility-section__features" aria-label="Business centre features">
+          <!-- TODO: Replace with real content -->
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+          <li class="facility-section__feature"><!-- TODO: Replace with real content --></li>
+        </ul>
+        <a href="contact.html" class="facility-btn">
+          Contact Us
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       AMENITY ICON STRIP
+  ═══════════════════════════════════════════════ -->
+  <section class="amenity-strip" aria-labelledby="amenity-title">
+    <div class="amenity-strip__inner">
+      <div class="amenity-strip__header reveal">
+        <p class="amenity-strip__eyebrow">Everything You Need</p>
+        <h2 class="amenity-strip__title" id="amenity-title">Hotel Amenities at a Glance</h2>
+        <div class="amenity-strip__rule" aria-hidden="true"></div>
+      </div>
+
+      <div class="amenity-strip__grid" role="list" aria-label="Complete amenities list">
+
+        <div class="amenity-item reveal" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🏊</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-1" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🧖</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-1" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🏋️</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-2" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🎤</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-2" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">💼</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-3" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🍽️</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-3" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">📶</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-3" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🅿️</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-3" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🛎️</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-3" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🔒</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-3" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">🚗</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+        <div class="amenity-item reveal reveal-delay-3" role="listitem">
+          <span class="amenity-item__icon" aria-hidden="true">☕</span>
+          <!-- TODO: Replace with real content -->
+          <span class="amenity-item__label"><!-- TODO: Replace with real content --></span>
+        </div>
+
+      </div><!-- /.amenity-strip__grid -->
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER  (4-column, navy)
+  ═══════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+
+      <!-- Col 1: Brand + contact -->
+      <div>
+        <p class="footer__brand-name">Beechnut Hotel</p>
+        <p class="footer__brand-sub">Warri, Delta State — Nigeria</p>
+        <p class="footer__tagline">
+          <!-- TODO: Replace with real content -->
+        </p>
+        <div class="footer__contact-item">
+          <span aria-hidden="true">📍</span>
+          <span><!-- TODO: Replace with real content --></span>
+        </div>
+        <div class="footer__contact-item">
+          <span aria-hidden="true">📞</span>
+          <span><!-- TODO: Replace with real content --></span>
+        </div>
+        <div class="footer__contact-item">
+          <span aria-hidden="true">✉️</span>
+          <span><!-- TODO: Replace with real content --></span>
+        </div>
+        <div class="footer__social" aria-label="Social media links">
+          <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
+          <a href="#" class="footer__social-link" aria-label="Instagram">in</a>
+          <a href="#" class="footer__social-link" aria-label="Twitter / X">𝕏</a>
+          <a href="#" class="footer__social-link" aria-label="WhatsApp">W</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Explore -->
+      <div>
+        <h3 class="footer__col-title">Explore</h3>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="dining.html">Dining</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Services -->
+      <div>
+        <h3 class="footer__col-title">Services</h3>
+        <ul class="footer__links">
+          <!-- TODO: Replace with real content -->
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Reservations -->
+      <div>
+        <h3 class="footer__col-title">Reservations</h3>
+        <ul class="footer__links">
+          <li><a href="booking.html">Book a Room</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <!-- TODO: Replace with real content -->
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+          <li><a href="#"><!-- TODO: Replace with real content --></a></li>
+        </ul>
+      </div>
+
+    </div><!-- /.footer__grid -->
+
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; <span id="footerYear"></span> Beechnut Hotel Warri. All rights reserved.
+      </p>
+      <nav class="footer__legal" aria-label="Legal navigation">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Cookie Policy</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════
+       WHATSAPP FLOATING BUTTON
+  ═══════════════════════════════════════════════ -->
+  <a
+    href="https://wa.me/<!-- TODO: Replace with real content -->"
+    class="whatsapp-fab"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with us on WhatsApp"
+  >
+    <div class="whatsapp-fab__pulse" aria-hidden="true"></div>
+    <!-- WhatsApp SVG logo -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════════ -->
+  <script>
+    // ── Footer year ────────────────────────────────
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // ── Sticky navbar shadow ───────────────────────
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // ── Hamburger menu ─────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const navMenu   = document.getElementById('navMenu');
+    hamburger.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+
+    // ── Hero bg subtle parallax ────────────────────
+    const heroBg = document.getElementById('heroBg');
+    setTimeout(() => heroBg.classList.add('parallax-ready'), 100);
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      heroBg.style.transform = `translateY(${y * 0.28}px) scale(1)`;
+    }, { passive: true });
+
+    // ── Scroll reveal ──────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

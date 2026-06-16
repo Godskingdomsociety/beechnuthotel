@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn the story, mission, and team behind Beechnut Hotel Warri — Delta State's premier luxury hospitality destination built on heritage, warmth, and excellence." />
+  <title>About Us | Beechnut Hotel Warri – Our Story &amp; Team</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Site stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────── */
+    :root {
+      --navy:       #0F1B2D;
+      --navy-deep:  #080f1a;
+      --navy-mid:   #1a2e47;
+      --gold:       #C9A84C;
+      --gold-light: #e2c478;
+      --gold-pale:  #f5ecd4;
+      --offwhite:   #F9F6F0;
+      --text-dark:  #1c1c1c;
+      --text-mid:   #4a4a4a;
+      --text-muted: #888;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-heading: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --radius-sm: 4px;
+      --radius-md: 10px;
+      --radius-lg: 20px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --container: min(1200px, 92vw);
+    }
+
+    /* ─── Reset / Base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--offwhite);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Utility ───────────────────────────────────────── */
+    .container { width: var(--container); margin-inline: auto; }
+    .gold-rule {
+      display: block;
+      width: 56px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1.4rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    /* ─── Sticky Navbar ─────────────────────────────────── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      transition: box-shadow var(--transition);
+    }
+    .navbar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+
+    .navbar__logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.03em;
+    }
+    .navbar__logo span { color: var(--gold); }
+
+    .navbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .navbar__nav a {
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .navbar__nav a:hover,
+    .navbar__nav a.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .navbar__cta {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+    .navbar__cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .navbar__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .navbar__hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ─── Page Hero ─────────────────────────────────────── */
+    .page-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--navy-deep);
+    }
+
+    /* Layered geometric background */
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.12) 0%, transparent 55%),
+        linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 59px,
+          rgba(201,168,76,0.04) 59px,
+          rgba(201,168,76,0.04) 60px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 59px,
+          rgba(201,168,76,0.04) 59px,
+          rgba(201,168,76,0.04) 60px
+        );
+    }
+
+    /* decorative corner accent */
+    .hero-accent {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 320px; height: 320px;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-right: 1px solid rgba(201,168,76,0.2);
+      border-radius: 0 100% 0 0;
+      pointer-events: none;
+    }
+    .hero-accent--tr {
+      top: 0; right: 0; bottom: auto; left: auto;
+      border-top: none; border-right: none;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      border-left: 1px solid rgba(201,168,76,0.2);
+      border-radius: 0 0 0 100%;
+    }
+
+    .page-hero__content {
+      position: relative;
+      z-index: 2;
+      animation: heroFade 0.9s ease both;
+    }
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-hero__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .page-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.8rem;
+    }
+    .page-hero__title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.7); transition: color var(--transition); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb__sep { color: var(--gold); opacity: 0.6; }
+    .breadcrumb__current { color: var(--gold); font-weight: 500; }
+
+    /* ─── Story Section ─────────────────────────────────── */
+    .story {
+      padding: 6rem 5vw;
+      background: var(--offwhite);
+    }
+    .story__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      width: var(--container);
+      margin-inline: auto;
+    }
+    .story__image-wrap {
+      position: relative;
+    }
+    .story__image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-md);
+      object-fit: cover;
+      background: var(--navy-mid);
+
+      /* placeholder gradient while real image loads */
+      background: linear-gradient(160deg, var(--navy-mid) 0%, var(--navy) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Decorative gold frame offset */
+    .story__image-wrap::before {
+      content: '';
+      position: absolute;
+      top: 1.2rem; left: 1.2rem;
+      right: -1.2rem; bottom: -1.2rem;
+      border: 2px solid var(--gold);
+      border-radius: var(--radius-md);
+      z-index: -1;
+      opacity: 0.5;
+    }
+    .story__badge {
+      position: absolute;
+      bottom: -1.6rem;
+      right: -1.6rem;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 50%;
+      width: 120px; height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+    }
+    .story__badge-num {
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .story__badge-text {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    .story__text p {
+      color: var(--text-mid);
+      font-size: 0.97rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+    .story__text p:last-of-type { margin-bottom: 2rem; }
+
+    .story__signature {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,168,76,0.25);
+    }
+    .story__sig-title {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--navy);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--navy);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Mission / Values ──────────────────────────────── */
+    .values {
+      padding: 5.5rem 5vw;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .values::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .values__header {
+      text-align: center;
+      max-width: 600px;
+      margin-inline: auto;
+      margin-bottom: 3.5rem;
+    }
+    .values__header .section-label { color: var(--gold); }
+    .values__header .section-title { color: #fff; }
+    .values__header p {
+      color: rgba(255,255,255,0.58);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .values__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      width: var(--container);
+      margin-inline: auto;
+    }
+    .value-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: var(--radius-md);
+      padding: 2.2rem 2rem;
+      text-align: center;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+    .value-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-5px);
+    }
+    .value-card:hover::after { transform: scaleX(1); }
+
+    .value-card__icon {
+      width: 60px; height: 60px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.4rem;
+    }
+    .value-card__icon svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .value-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .value-card__text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+    }
+
+    /* ─── Awards Strip ──────────────────────────────────── */
+    .awards {
+      padding: 3.5rem 5vw;
+      background: var(--gold-pale);
+      border-top: 1px solid rgba(201,168,76,0.3);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+    }
+    .awards__inner {
+      width: var(--container);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .awards__label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .awards__divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(201,168,76,0.35);
+      flex-shrink: 0;
+    }
+    .awards__list {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .award-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .award-item__icon {
+      width: 40px; height: 40px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .award-item__icon svg { width: 18px; height: 18px; fill: var(--navy); }
+    .award-item__text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .award-item__text span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── Team Section ──────────────────────────────────── */
+    .team {
+      padding: 6rem 5vw;
+      background: var(--offwhite);
+    }
+    .team__header {
+      text-align: center;
+      max-width: 560px;
+      margin-inline: auto;
+      margin-bottom: 3.5rem;
+    }
+    .team__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      width: var(--container);
+      margin-inline: auto;
+    }
+    .team-card {
+      text-align: center;
+    }
+    .team-card__photo-wrap {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 1.5rem;
+    }
+    .team-card__photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: linear-gradient(145deg, var(--navy-mid), var(--navy));
+      border: 3px solid rgba(201,168,76,0.3);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .team-card:hover .team-card__photo {
+      border-color: var(--gold);
+      transform: scale(1.04);
+    }
+    /* ring decoration */
+    .team-card__photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201,168,76,0.3);
+      transition: border-color var(--transition);
+    }
+    .team-card:hover .team-card__photo-wrap::after { border-color: rgba(201,168,76,0.7); }
+
+    .team-card__name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .team-card__role {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .team-card__bio {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA Banner ────────────────────────────────────── */
+    .cta-banner {
+      padding: 5rem 5vw;
+      background: var(--navy-deep);
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 50%, rgba(201,168,76,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 50%, rgba(201,168,76,0.08) 0%, transparent 55%);
+    }
+    .cta-banner__content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin-inline: auto;
+    }
+    .cta-banner .section-label { color: var(--gold); justify-content: center; }
+    .cta-banner .section-title { color: #fff; }
+    .cta-banner p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.97rem;
+      line-height: 1.8;
+      margin-bottom: 2.2rem;
+    }
+    .cta-banner__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.9rem 2.2rem;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--gold);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-2px); }
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      padding: 0.9rem 2.2rem;
+      border-radius: var(--radius-sm);
+      border: 2px solid rgba(255,255,255,0.25);
+      transition: border-color var(--transition), color var(--transition), transform var(--transition);
+    }
+    .btn-outline-white:hover { border-color: #fff; color: #fff; transform: translateY(-2px); }
+
+    /* ─── Footer ────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      padding: 5rem 5vw 0;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.4fr;
+      gap: 3rem;
+      width: var(--container);
+      margin-inline: auto;
+      padding-bottom: 4rem;
+    }
+    .footer__brand .navbar__logo { display: inline-block; margin-bottom: 1.1rem; }
+    .footer__brand p { font-size: 0.85rem; line-height: 1.8; max-width: 280px; margin-bottom: 1.5rem; }
+    .footer__socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .footer__social {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .footer__social:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+    .footer__social svg { width: 15px; height: 15px; fill: rgba(255,255,255,0.6); }
+
+    .footer__col-title {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+    .footer__links { list-style: none; }
+    .footer__links li { margin-bottom: 0.7rem; }
+    .footer__links a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+    .footer__links a:hover { color: var(--gold); }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+    .footer__contact-item svg {
+      width: 16px; height: 16px;
+      stroke: var(--gold); fill: none; stroke-width: 1.6;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 1.6rem 0;
+      width: var(--container);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .footer__bottom a { color: var(--gold); }
+
+    /* ─── WhatsApp Float ────────────────────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50px;
+      padding: 0.75rem 1.3rem 0.75rem 0.9rem;
+      box-shadow: 0 6px 28px rgba(37,211,102,0.4);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: transform var(--transition), box-shadow var(--transition);
+      animation: waPulse 3s ease-in-out infinite;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 36px rgba(37,211,102,0.55);
+    }
+    .whatsapp-float svg { width: 22px; height: 22px; fill: #fff; }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 6px 28px rgba(37,211,102,0.4); }
+      50%       { box-shadow: 0 6px 40px rgba(37,211,102,0.65); }
+    }
+
+    /* ─── Image placeholder helper ─────────────────────── */
+    .img-placeholder {
+      border-radius: var(--radius-md);
+      background: linear-gradient(145deg, #1a2e47 0%, #0F1B2D 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .img-placeholder svg { width: 36px; height: 36px; stroke: rgba(201,168,76,0.4); fill: none; stroke-width: 1; }
+
+    .team-card__photo.img-placeholder {
+      font-size: 0.65rem;
+      border-radius: 50%;
+    }
+
+    /* ─── Responsive ────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .team__grid { grid-template-columns: repeat(2, 1fr); }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .navbar__nav, .navbar__cta { display: none; }
+      .navbar__hamburger { display: flex; }
+
+      .story__grid { grid-template-columns: 1fr; gap: 3rem; }
+      .story__image-wrap { max-width: 420px; margin-inline: auto; }
+
+      .values__grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+
+      .team__grid { grid-template-columns: repeat(2, 1fr); }
+
+      .awards__inner { flex-direction: column; align-items: flex-start; }
+      .awards__divider { width: 40px; height: 1px; }
+
+      .footer__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 480px) {
+      .team__grid { grid-template-columns: 1fr; max-width: 320px; margin-inline: auto; }
+      .page-hero { height: 55vh; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       STICKY NAVBAR
+  ════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar" role="banner">
+    <a href="index.html" class="navbar__logo" aria-label="Beechnut Hotel Home">
+      Beechnut<span>&nbsp;Hotel</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="navbar__nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active" aria-current="page">About</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="dining.html">Dining</a></li>
+        <li><a href="facilities.html">Facilities</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a href="booking.html" class="navbar__cta" aria-label="Book a room">Book Now</a>
+
+    <button class="navbar__hamburger" aria-label="Toggle mobile menu" aria-expanded="false" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════
+         PAGE HERO
+    ════════════════════════════════════════════════ -->
+    <section class="page-hero" aria-labelledby="hero-title">
+      <div class="hero-accent" aria-hidden="true"></div>
+      <div class="hero-accent hero-accent--tr" aria-hidden="true"></div>
+      <div class="page-hero__content">
+        <p class="page-hero__eyebrow">Beechnut Hotel Warri</p>
+        <h1 class="page-hero__title" id="hero-title">
+          Our <em>Story</em> &amp; Heritage
+        </h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">›</span>
+          <span class="breadcrumb__current">About</span>
+        </nav>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         HOTEL STORY  (2-column)
+    ════════════════════════════════════════════════ -->
+    <section class="story" aria-labelledby="story-title">
+      <div class="story__grid">
+
+        <!-- Image column -->
+        <div class="story__image-wrap">
+          <!-- TODO: Replace with real content -->
+          <div class="story__image img-placeholder" role="img" aria-label="Hotel exterior photograph">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span>Hotel Photo</span>
+          </div>
+          <div class="story__badge" aria-label="Established year">
+            <!-- TODO: Replace with real content -->
+            <span class="story__badge-num">20+</span>
+            <span class="story__badge-text">Years of<br>Excellence</span>
+          </div>
+        </div>
+
+        <!-- Text column -->
+        <div class="story__text">
+          <p class="section-label">Our Story</p>
+          <span class="gold-rule" aria-hidden="true"></span>
+          <h2 class="section-title" id="story-title">
+            A Legacy Built on <em>Warmth</em> &amp; Distinction
+          </h2>
+
+          <!-- TODO: Replace with real content -->
+          <p>
+            Founded with a vision to bring world-class hospitality to the heart of Delta State,
+            Beechnut Hotel Warri has grown from a cherished local retreat into one of the Niger
+            Delta's most respected luxury addresses. Our walls hold decades of celebrations,
+            milestones, and memories.
+          </p>
+          <!-- TODO: Replace with real content -->
+          <p>
+            Set against the vibrant energy of Warri, we have always believed that true luxury
+            begins with genuine human connection — the warmth of a greeting, the precision of
+            a perfectly prepared meal, the quiet confidence of a room designed for rest.
+          </p>
+          <!-- TODO: Replace with real content -->
+          <p>
+            From our grand lobby to our manicured grounds, every detail at Beechnut reflects
+            our commitment to heritage, quality, and the enduring spirit of Nigerian hospitality.
+          </p>
+
+          <a href="rooms.html" class="btn-primary">
+            Explore Our Rooms
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+
+          <div class="story__signature">
+            <!-- TODO: Replace with real content -->
+            Founder's Name
+            <p class="story__sig-title">Founder &amp; Chairman, Beechnut Hotel Warri</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         AWARDS STRIP
+    ════════════════════════════════════════════════ -->
+    <section class="awards" aria-label="Awards and recognition">
+      <div class="awards__inner">
+        <span class="awards__label">Recognition</span>
+        <div class="awards__divider" aria-hidden="true"></div>
+        <div class="awards__list" role="list">
+
+          <!-- TODO: Replace with real content -->
+          <div class="award-item" role="listitem">
+            <div class="award-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="award-item__text">
+              <strong><!-- TODO: Replace with real content --> Award Name</strong>
+              <span><!-- TODO: Replace with real content --> Awarding Body, Year</span>
+            </div>
+          </div>
+
+          <!-- TODO: Replace with real content -->
+          <div class="award-item" role="listitem">
+            <div class="award-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="award-item__text">
+              <strong><!-- TODO: Replace with real content --> Award Name</strong>
+              <span><!-- TODO: Replace with real content --> Awarding Body, Year</span>
+            </div>
+          </div>
+
+          <!-- TODO: Replace with real content -->
+          <div class="award-item" role="listitem">
+            <div class="award-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="award-item__text">
+              <strong><!-- TODO: Replace with real content --> Award Name</strong>
+              <span><!-- TODO: Replace with real content --> Awarding Body, Year</span>
+            </div>
+          </div>
+
+          <!-- TODO: Replace with real content -->
+          <div class="award-item" role="listitem">
+            <div class="award-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="award-item__text">
+              <strong><!-- TODO: Replace with real content --> Award Name</strong>
+              <span><!-- TODO: Replace with real content --> Awarding Body, Year</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         MISSION / VALUES  (3 icon cards)
+    ════════════════════════════════════════════════ -->
+    <section class="values" aria-labelledby="values-title">
+      <div class="values__header">
+        <p class="section-label">What Drives Us</p>
+        <h2 class="section-title" id="values-title">
+          Mission &amp; <em>Core Values</em>
+        </h2>
+        <!-- TODO: Replace with real content -->
+        <p>
+          Everything we do at Beechnut flows from three founding principles that have
+          guided our team from day one: excellence without compromise, community without
+          pretence, and hospitality without limits.
+        </p>
+      </div>
+
+      <div class="values__grid">
+
+        <!-- Card 1 -->
+        <article class="value-card">
+          <div class="value-card__icon" aria-hidden="true">
+            <!-- Crown / Excellence icon -->
+            <svg viewBox="0 0 24 24"><path d="M2 20h20M6 20l1-8 5 4 5-4 1 8"/><circle cx="12" cy="6" r="2"/></svg>
+          </div>
+          <!-- TODO: Replace with real content -->
+          <h3 class="value-card__title">Excellence</h3>
+          <p class="value-card__text">
+            <!-- TODO: Replace with real content -->
+            We pursue the highest standards in every detail — from the thread count of our
+            linens to the timing of a room-service delivery. Mediocrity has no place here.
+          </p>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="value-card">
+          <div class="value-card__icon" aria-hidden="true">
+            <!-- Heart / Warmth icon -->
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <!-- TODO: Replace with real content -->
+          <h3 class="value-card__title">Warm Hospitality</h3>
+          <p class="value-card__text">
+            <!-- TODO: Replace with real content -->
+            True hospitality is felt, not performed. We train our team to anticipate needs,
+            remember names, and treat every guest like a cherished long-time friend.
+          </p>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="value-card">
+          <div class="value-card__icon" aria-hidden="true">
+            <!-- Community / Handshake icon -->
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <!-- TODO: Replace with real content -->
+          <h3 class="value-card__title">Community</h3>
+          <p class="value-card__text">
+            <!-- TODO: Replace with real content -->
+            Warri is our home and we invest in it. From sourcing local produce to hiring local
+            talent, Beechnut is committed to growing alongside the community that sustains us.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         TEAM  (4 staff cards)
+    ════════════════════════════════════════════════ -->
+    <section class="team" aria-labelledby="team-title">
+      <div class="team__header">
+        <p class="section-label">The People Behind the Promise</p>
+        <span class="gold-rule" style="margin-inline:auto;" aria-hidden="true"></span>
+        <h2 class="section-title" id="team-title">Meet Our <em>Team</em></h2>
+        <!-- TODO: Replace with real content -->
+        <p style="color:var(--text-mid);font-size:.93rem;line-height:1.8;">
+          Passionate professionals united by a single purpose: making your stay unforgettable.
+        </p>
+      </div>
+
+      <div class="team__grid">
+
+        <!-- Staff Card 1 -->
+        <article class="team-card">
+          <div class="team-card__photo-wrap">
+            <!-- TODO: Replace with real content -->
+            <div class="team-card__photo img-placeholder" role="img" aria-label="General Manager photo">
+              <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+          </div>
+          <!-- TODO: Replace with real content -->
+          <h3 class="team-card__name">Full Name</h3>
+          <p class="team-card__role">General Manager</p>
+          <p class="team-card__bio"><!-- TODO: Replace with real content --> Short professional bio goes here. Highlight experience and passion for hospitality.</p>
+        </article>
+
+        <!-- Staff Card 2 -->
+        <article class="team-card">
+          <div class="team-card__photo-wrap">
+            <!-- TODO: Replace with real content -->
+            <div class="team-card__photo img-placeholder" role="img" aria-label="Head Chef photo">
+              <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+          </div>
+          <!-- TODO: Replace with real content -->
+          <h3 class="team-card__name">Full Name</h3>
+          <p class="team-card__role">Executive Chef</p>
+          <p class="team-card__bio"><!-- TODO: Replace with real content --> Short professional bio goes here. Highlight culinary training, signature dishes, and philosophy.</p>
+        </article>
+
+        <!-- Staff Card 3 -->
+        <article class="team-card">
+          <div class="team-card__photo-wrap">
+            <!-- TODO: Replace with real content -->
+            <div class="team-card__photo img-placeholder" role="img" aria-label="Front Office Manager photo">
+              <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+          </div>
+          <!-- TODO: Replace with real content -->
+          <h3 class="team-card__name">Full Name</h3>
+          <p class="team-card__role">Front Office Manager</p>
+          <p class="team-card__bio"><!-- TODO: Replace with real content --> Short professional bio goes here. Highlight guest relations expertise and service philosophy.</p>
+        </article>
+
+        <!-- Staff Card 4 -->
+        <article class="team-card">
+          <div class="team-card__photo-wrap">
+            <!-- TODO: Replace with real content -->
+            <div class="team-card__photo img-placeholder" role="img" aria-label="Events Manager photo">
+              <svg viewBox="0 0 24 24" width="28" height="28"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+          </div>
+          <!-- TODO: Replace with real content -->
+          <h3 class="team-card__name">Full Name</h3>
+          <p class="team-card__role">Events Manager</p>
+          <p class="team-card__bio"><!-- TODO: Replace with real content --> Short professional bio goes here. Highlight events background and memorable occasions delivered.</p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         CTA BANNER
+    ════════════════════════════════════════════════ -->
+    <section class="cta-banner" aria-labelledby="cta-title">
+      <div class="cta-banner__content">
+        <p class="section-label">Experience Beechnut</p>
+        <h2 class="section-title" id="cta-title">
+          Ready to <em>Check In</em> to Something Extraordinary?
+        </h2>
+        <!-- TODO: Replace with real content -->
+        <p>
+          Whether you're visiting Warri for business or leisure, Beechnut Hotel promises a stay
+          that exceeds expectation at every turn. Book directly for our best available rate.
+        </p>
+        <div class="cta-banner__actions">
+          <a href="booking.html" class="btn-gold">
+            Reserve Your Room
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="contact.html" class="btn-outline-white">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════
+       4-COLUMN FOOTER
+  ════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+
+      <!-- Col 1: Brand -->
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo" aria-label="Beechnut Hotel Home">
+          Beechnut<span>&nbsp;Hotel</span>
+        </a>
+        <!-- TODO: Replace with real content -->
+        <p>
+          Delta State's premier destination for luxury hospitality, unforgettable dining,
+          and effortless comfort in the heart of Warri.
+        </p>
+        <div class="footer__socials" aria-label="Social media links">
+          <!-- Facebook -->
+          <a href="#" class="footer__social" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="#" class="footer__social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="#" class="footer__social" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24"><path d="M4 4l16 16M4 20L20 4"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div>
+        <h3 class="footer__col-title">Quick Links</h3>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="rooms.html">Rooms &amp; Suites</a></li>
+          <li><a href="dining.html">Dining</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Services -->
+      <div>
+        <h3 class="footer__col-title">Services</h3>
+        <ul class="footer__links">
+          <!-- TODO: Replace with real content -->
+          <li><a href="#">Conference &amp; Events</a></li>
+          <li><a href="#">Airport Transfers</a></li>
+          <li><a href="#">Spa &amp; Wellness</a></li>
+          <li><a href="#">Swimming Pool</a></li>
+          <li><a href="#">Business Centre</a></li>
+          <li><a href="#">24-hr Room Service</a></li>
+          <li><a href="#">Laundry</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div>
+        <h3 class="footer__col-title">Contact Us</h3>
+        <address style="font-style:normal;">
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <!-- TODO: Replace with real content -->
+            <span>Street Address, Warri,<br>Delta State, Nigeria</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
+            <!-- TODO: Replace with real content -->
+            <span>+234 000 000 0000</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <!-- TODO: Replace with real content -->
+            <span>info@beechnuthotel.com</span>
+          </div>
+        </address>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <!-- TODO: Replace with real content -->
+      <span>&copy; <span id="year"></span> Beechnut Hotel Warri. All rights reserved.</span>
+      <span>
+        <a href="#">Privacy Policy</a>&ensp;·&ensp;
+        <a href="#">Terms &amp; Conditions</a>
+      </span>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════
+       WHATSAPP FLOATING BUTTON
+  ════════════════════════════════════════════════ -->
+  <a
+    href="https://wa.me/234XXXXXXXXXX"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with us on WhatsApp"
+  >
+    <!-- WhatsApp SVG logo -->
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M16 2C8.28 2 2 8.28 2 16c0 2.46.66 4.76 1.8 6.76L2 30l7.44-1.76A14 14 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.5a11.5 11.5 0 0 1-5.88-1.6l-.42-.25-4.42 1.04 1.06-4.32-.27-.44A11.5 11.5 0 1 1 16 27.5zm6.32-8.6c-.35-.17-2.06-1.01-2.38-1.13-.32-.12-.56-.17-.8.17s-.92 1.13-1.12 1.36c-.2.23-.42.26-.77.09-2.05-.92-3.4-1.64-4.75-3.73-.36-.61.36-.57 1.03-1.89.11-.24.06-.44-.03-.62-.09-.18-.8-1.93-1.1-2.64-.29-.69-.58-.6-.8-.61h-.68c-.23 0-.61.09-.93.44-.32.35-1.22 1.19-1.22 2.91s1.25 3.38 1.42 3.61c.17.23 2.44 3.72 5.92 5.22.83.36 1.47.57 1.97.73.83.26 1.58.22 2.17.13.66-.1 2.06-.84 2.35-1.65.29-.81.29-1.5.2-1.65-.09-.14-.32-.23-.67-.4z"/>
+    </svg>
+    Chat with Us
+  </a>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════════════ -->
+
+
+  <script>
+    /* ── Footer year ── */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ── Navbar scroll shadow ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* ── Mobile hamburger toggle ── */
+    const hamburger = document.getElementById('hamburger');
+    const navList = document.querySelector('.navbar__nav');
+    hamburger?.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      if (navList) {
+        navList.style.display = expanded ? 'none' : 'flex';
+        navList.style.flexDirection = expanded ? '' : 'column';
+        navList.style.position = expanded ? '' : 'absolute';
+        navList.style.top = expanded ? '' : '72px';
+        navList.style.left = expanded ? '' : '0';
+        navList.style.right = expanded ? '' : '0';
+        navList.style.background = expanded ? '' : 'var(--navy)';
+        navList.style.padding = expanded ? '' : '1.5rem 5vw';
+        navList.style.borderTop = expanded ? '' : '1px solid rgba(201,168,76,0.15)';
+        navList.style.zIndex = expanded ? '' : '800';
+      }
+    });
+
+    /* ── Scroll-reveal for cards ── */
+    if ('IntersectionObserver' in window) {
+      const revealTargets = document.querySelectorAll(
+        '.value-card, .team-card, .award-item, .story__grid > *'
+      );
+      revealTargets.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(28px)';
+        el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealTargets.forEach(el => observer.observe(el));
+    }
+  </script>
+
+</body>
+</html>
