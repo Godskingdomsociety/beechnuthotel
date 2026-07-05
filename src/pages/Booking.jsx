@@ -42,20 +42,11 @@ export default function Booking() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-navy-950 border-b border-navy-800 flex items-center justify-between h-16 px-4 sm:px-8">
-        <Link to="/" className="font-display text-xl font-normal text-white tracking-wide">
-          Beechnut <span className="text-gold-400">·</span> Warri
-        </Link>
-        <Link to="/" className="text-xs text-gold-300/70 uppercase tracking-wider hover:text-gold-300 transition-colors">
-          ← Back to Hotel
-        </Link>
-      </header>
-
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="bg-navy-950 py-12 text-center relative overflow-hidden"
+        className="bg-navy-950 pt-28 pb-12 text-center relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-radial from-gold-400/10 to-transparent pointer-events-none" />
         <div className="relative z-10">
@@ -103,8 +94,9 @@ export default function Booking() {
                         isSelected ? 'ring-2 ring-gold-500 border-gold-500' : 'border-gray-200'
                       }`}
                     >
-                      <div className="h-48 bg-navy-800/5 flex items-center justify-center text-navy-900/40 text-sm font-display">
-                        {room.name}
+                      <div className="relative h-48 overflow-hidden bg-navy-800/10">
+                        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${room.image})` }} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/30 via-transparent to-transparent" />
                       </div>
                       <div className="p-4 flex flex-col flex-1">
                         <div className="flex items-start justify-between gap-2 mb-2">
@@ -229,10 +221,6 @@ export default function Booking() {
         )}
       </main>
 
-      <footer className="bg-navy-950 text-center py-6 text-gold-300/80 text-sm">
-        &copy; {new Date().getFullYear()} Beechnut Hotel Warri &nbsp;&middot;&nbsp;
-        For assistance call or WhatsApp our reservations team
-      </footer>
     </>
   )
 }

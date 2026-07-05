@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
   { to: '/rooms', label: 'Rooms & Suites' },
   { to: '/dining', label: 'Dining' },
   { to: '/events', label: 'Events' },
   { to: '/gallery', label: 'Gallery' },
-  { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
 
