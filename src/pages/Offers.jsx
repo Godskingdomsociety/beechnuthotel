@@ -50,6 +50,7 @@ const OFFERS = [
   {
     title: 'Weekend Getaway',
     subtitle: 'Escape the everyday',
+    image: '/images/rooms/standard-room.webp',
     desc: 'Book 2 nights and get the 3rd night free. Includes complimentary breakfast and late checkout until 3pm.',
     price: 'From ₦90,000',
     tag: 'Limited Time',
@@ -57,6 +58,7 @@ const OFFERS = [
   {
     title: 'Honeymoon Suite',
     subtitle: 'Celebrate your love',
+    image: '/images/rooms/deluxe-suite.webp',
     desc: 'Champagne on arrival, couples massage, candlelit dinner, and turndown service with rose petals.',
     price: 'From ₦250,000',
     tag: 'Romantic',
@@ -64,6 +66,7 @@ const OFFERS = [
   {
     title: 'Corporate Long-Stay',
     subtitle: 'Business, elevated',
+    image: '/images/rooms/executive-suite.webp',
     desc: 'Stay 7+ nights and receive 20% off, daily breakfast, airport transfers, and executive lounge access.',
     price: 'From ₦36,000/night',
     tag: 'Business',
@@ -71,6 +74,7 @@ const OFFERS = [
   {
     title: 'Family Fun Package',
     subtitle: 'Memories for all ages',
+    image: '/images/gallery/rooms/gallery-room-1.webp',
     desc: 'Interconnecting rooms, kids-eat-free dining, pool passes, and a guided city tour for the whole family.',
     price: 'From ₦150,000',
     tag: 'Family',
@@ -116,7 +120,9 @@ export default function Offers() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {OFFERS.map((offer, i) => (
               <ScrollReveal key={offer.title} delay={0.1 * i}>
-                <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 p-6 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                  <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url(${offer.image})` }} />
+                  <div className="p-6">
                   <span className="text-xs font-semibold tracking-wider uppercase text-gold-500 mb-1 block">{offer.tag}</span>
                   <h3 className="font-display text-xl font-bold text-navy-900 mb-1">{offer.title}</h3>
                   <p className="text-sm italic text-gray-500 mb-3">{offer.subtitle}</p>
@@ -128,6 +134,7 @@ export default function Offers() {
                     </Link>
                   </div>
                 </div>
+              </div>
               </ScrollReveal>
             ))}
           </div>

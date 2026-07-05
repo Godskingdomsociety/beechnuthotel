@@ -6,21 +6,21 @@ const DINING_VENUES = [
     name: 'The Gold Restaurant',
     tagline: 'Fine Dining, Nigerian Soul',
     description: 'Elegant à la carte dining celebrating Nigeria\'s most iconic flavours with a contemporary fine-dining twist. Our signature banga bisque, pepper-rubbed grilled lobster, and plantain crème brûlée are guest favourites.',
-    image: null,
+    image: '/images/dining/gold-restaurant.webp',
     highlights: ['À la carte menu', 'Private dining room', 'Wine cellar', 'Open daily 6:30am–10pm'],
   },
   {
     name: 'Poolside Grill & Bar',
     tagline: 'Casual Luxury by the Water',
     description: 'Relaxed poolside dining serving wood-fired pizzas, grilled seafood, fresh salads, and handcrafted cocktails. The perfect spot for a lazy afternoon or sundowner.',
-    image: null,
+    image: '/images/dining/poolside-grill.webp',
     highlights: ['Wood-fired grill', 'Cocktail bar', 'Poolside seating', 'Open 11am–11pm'],
   },
   {
     name: 'Skyview Rooftop Bar',
     tagline: 'Warri\'s Best Views',
     description: 'Perched on the top floor, our rooftop bar offers panoramic views of the Warri skyline. Sip on signature cocktails, champagne, and premium spirits as the sun sets over the Niger Delta.',
-    image: null,
+    image: '/images/dining/skyview-rooftop.webp',
     highlights: ['Panoramic views', 'Signature cocktails', 'Live music Fri–Sat', 'Open 4pm–late'],
   },
 ]
@@ -58,9 +58,7 @@ export default function Dining() {
             {DINING_VENUES.map((venue, i) => (
               <ScrollReveal key={venue.name} delay={0.1 * i}>
                 <div className={`grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[400px] overflow-hidden rounded-lg shadow-sm ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                  <div className="bg-navy-800/20 min-h-[300px] lg:min-h-full flex items-center justify-center text-white/20 text-lg uppercase tracking-widest">
-                    {venue.name}
-                  </div>
+                  <div className="min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: `url(${venue.image})` }} />
                   <div className={`p-8 lg:p-12 flex flex-col justify-center ${i % 2 === 1 ? 'bg-navy-950' : 'bg-white'}`}>
                     <span className={`text-xs font-semibold tracking-[0.18em] uppercase block mb-2 ${i % 2 === 1 ? 'text-gold-400' : 'text-gold-500'}`}>
                       {venue.tagline}

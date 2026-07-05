@@ -4,11 +4,16 @@ import ScrollReveal from '../components/ui/ScrollReveal'
 
 const CATEGORIES = ['all', 'rooms', 'dining', 'events', 'facilities']
 
-const GALLERY_ITEMS = Array.from({ length: 18 }, (_, i) => ({
-  id: i + 1,
-  category: CATEGORIES[1 + (i % 4)],
-  caption: `Gallery image ${i + 1}`,
-}))
+const GALLERY_ITEMS = [
+  { id: 1, category: 'rooms', image: '/images/gallery/rooms/gallery-room-1.webp', caption: 'Executive Suite Living Area' },
+  { id: 2, category: 'rooms', image: '/images/gallery/rooms/gallery-room-2.webp', caption: 'Premium Guest Room' },
+  { id: 3, category: 'dining', image: '/images/gallery/dining/gallery-dining-1.webp', caption: 'Bar & Lounge Area' },
+  { id: 4, category: 'dining', image: '/images/gallery/dining/gallery-dining-2.webp', caption: 'Dining Experience' },
+  { id: 5, category: 'dining', image: '/images/gallery/dining/gallery-dining-3.webp', caption: 'Outdoor Patio Dining' },
+  { id: 6, category: 'facilities', image: '/images/gallery/facilities/gallery-facility-1.webp', caption: 'Guest Lounge' },
+  { id: 7, category: 'facilities', image: '/images/gallery/facilities/gallery-facility-2.webp', caption: 'Relaxation Area' },
+  { id: 8, category: 'facilities', image: '/images/gallery/facilities/gallery-facility-3.webp', caption: 'Reception & Lobby' },
+]
 
 export default function Gallery() {
   const [filter, setFilter] = useState('all')
@@ -64,9 +69,7 @@ export default function Gallery() {
                 key={item.id}
                 className="group relative aspect-square bg-navy-800/10 overflow-hidden cursor-zoom-in hover:shadow-md transition-all duration-300 rounded-sm"
               >
-                <div className="absolute inset-0 flex items-center justify-center text-navy-900/20 text-xs uppercase tracking-widest">
-                  {item.category}
-                </div>
+                <img src={item.image} alt={item.caption} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gold-500/0 group-hover:bg-gold-500/60 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
                     <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />

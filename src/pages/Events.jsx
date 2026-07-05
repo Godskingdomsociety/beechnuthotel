@@ -5,24 +5,28 @@ const EVENT_SPACES = [
   {
     name: 'The Grand Ballroom',
     capacity: 'Up to 500 guests',
+    image: '/images/gallery/dining/gallery-dining-1.webp',
     description: 'Our flagship venue with soaring ceilings, crystal chandeliers, and a fully flexible floor plan. Perfect for weddings, galas, and award ceremonies.',
     features: ['500 banquet / 700 cocktail', 'HD projection & sound', 'Chandelier lighting', 'Dedicated bridal suite'],
   },
   {
     name: 'Executive Boardroom',
     capacity: 'Up to 16 guests',
+    image: '/images/gallery/facilities/gallery-facility-1.webp',
     description: 'A refined, private space for high-stakes meetings and board sessions. Equipped with video-conferencing, digital whiteboards, and secure Wi-Fi.',
     features: ['Video-conferencing', 'Digital whiteboard', 'Catering available', 'Natural daylight'],
   },
   {
     name: 'Riverside Terrace',
     capacity: 'Up to 120 guests',
+    image: '/images/gallery/dining/gallery-dining-3.webp',
     description: 'An intimate outdoor setting for evening cocktail parties and sundowner events, with the Warri skyline as a breathtaking backdrop.',
     features: ['Outdoor covered terrace', 'Built-in BBQ & bar', 'Skyline views', 'Evening events'],
   },
   {
     name: 'Conference Hall',
     capacity: 'Up to 250 delegates',
+    image: '/images/gallery/facilities/gallery-facility-2.webp',
     description: 'A versatile conference space divisible into three breakout rooms. Ideal for corporate conferences, product launches, and training sessions.',
     features: ['Breakout rooms (×3)', 'PA system & microphones', 'Live streaming capable', 'Exhibition space'],
   },
@@ -61,9 +65,7 @@ export default function Events() {
             {EVENT_SPACES.map((space, i) => (
               <ScrollReveal key={space.name} delay={0.1 * i}>
                 <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-                  <div className="h-52 bg-navy-800/20 flex items-center justify-center text-white/20 text-sm uppercase tracking-widest">
-                    {space.name}
-                  </div>
+                  <div className="h-52 bg-cover bg-center" style={{ backgroundImage: `url(${space.image})` }} />
                   <div className="p-6">
                     <span className="text-xs font-semibold tracking-wider uppercase text-gold-500 block mb-1">{space.capacity}</span>
                     <h3 className="font-display text-xl font-bold text-navy-900 mb-2">{space.name}</h3>

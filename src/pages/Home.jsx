@@ -53,8 +53,10 @@ function TestimonialCarousel() {
               <div className="bg-white rounded-sm p-6 shadow-sm border-l-3 border-gold-400 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
                 <StarRating count={t.rating} />
                 <p className="font-accent italic text-lg text-navy-900 leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-full bg-surface-alt shrink-0" />
+                  <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-full bg-gold-100 shrink-0 flex items-center justify-center text-gold-600 text-xs font-bold tracking-wider">
+                    {t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                  </div>
                   <div>
                     <span className="text-sm font-semibold text-navy-900 block">{t.name}</span>
                     <span className="text-xs text-gray-500 block">{t.meta}</span>
@@ -87,7 +89,7 @@ function TestimonialCarousel() {
 
 export default function Home() {
   const [slideIndex, setSlideIndex] = useState(0)
-  const heroSlides = ['/images/hero-slide-1.jpg', '/images/hero-slide-2.jpg', '/images/hero-slide-3.jpg']
+  const heroSlides = ['/images/hero-slide-1.webp', '/images/hero-slide-2.webp']
 
   useEffect(() => {
     const t = setInterval(() => setSlideIndex(i => (i + 1) % heroSlides.length), 5000)
