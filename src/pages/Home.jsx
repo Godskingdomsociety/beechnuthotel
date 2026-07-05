@@ -132,7 +132,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
             {STATS.map((stat, i) => (
-              <div key={stat.label} className={`reveal ${i > 0 ? `transition-delay-${i}00` : ''}`}>
+              <div key={stat.label} className="animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
                 <span className="font-display text-4xl font-semibold text-navy-900 leading-none block">{stat.value}</span>
                 <span className="text-sm font-medium tracking-widest uppercase text-navy-900/75 mt-2 block">{stat.label}</span>
               </div>
@@ -156,10 +156,9 @@ export default function Home() {
             {ROOMS.slice(0, 3).map((room, i) => (
               <ScrollReveal key={room.id} delay={0.1 * (i + 1)}>
                 <article className="bg-white rounded-sm overflow-hidden shadow-sm hover:-translate-y-1.5 hover:shadow-lg transition-all duration-300 group">
-                  <div className="overflow-hidden relative">
-                    <div className="aspect-[4/3] bg-navy-800/20 flex items-center justify-center text-white/30 text-sm uppercase tracking-wider">
-                      {room.name}
-                    </div>
+                  <div className="overflow-hidden relative aspect-[4/3]">
+                    <img src={room.image} alt={room.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/40 via-transparent to-transparent" />
                     {room.badge !== 'Standard' && (
                       <span className={`absolute top-3 left-3 z-10 text-[0.65rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full ${
                         room.badge === 'Most Popular' ? 'bg-gold-400 text-navy-900' : 'bg-navy-950 text-white'
@@ -212,7 +211,7 @@ export default function Home() {
             <p className="text-navy-900/70 mb-4">We don't just host guests — we welcome family.</p>
             <Link to="/about" className="self-start px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm border-2 border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white transition-all">Our Story</Link>
           </div>
-          <div className="bg-navy-800/20 min-h-[300px] lg:min-h-full" />
+          <div className="min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/dining/gold-restaurant.webp)' }} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] overflow-hidden bg-navy-900">
@@ -224,7 +223,7 @@ export default function Home() {
             <p className="text-white/70 mb-4">Whether you're here for business or leisure, our location is your advantage.</p>
             <Link to="/contact" className="self-start px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm border-2 border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-navy-900 transition-all">Get Directions</Link>
           </div>
-          <div className="order-1 lg:order-2 bg-navy-800/20 min-h-[300px] lg:min-h-full" />
+          <div className="order-1 lg:order-2 min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-3.webp)' }} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] overflow-hidden">
@@ -236,12 +235,13 @@ export default function Home() {
             <p className="text-navy-900/70 mb-4">Excellence is not an amenity here. It is the standard.</p>
             <Link to="/facilities" className="self-start px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm border-2 border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white transition-all">Explore Facilities</Link>
           </div>
-          <div className="bg-navy-800/20 min-h-[300px] lg:min-h-full" />
+          <div className="min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/rooms/deluxe-suite.webp)' }} />
         </div>
       </section>
 
       <section className="relative min-h-[580px] flex items-center bg-navy-950 overflow-hidden" id="dining" aria-labelledby="dining-heading">
-        <div className="absolute inset-0 bg-navy-950/60 z-10" />
+        <div className="absolute inset-0 bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(/images/dining/poolside-grill.webp)' }} />
+        <div className="absolute inset-0 bg-navy-950/70 z-10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           <div className="max-w-xl">
             <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gold-400 block mb-3">Culinary Experiences</span>
@@ -273,7 +273,7 @@ export default function Home() {
       </section>
 
       <section className="py-16 lg:py-24 bg-navy-950 text-center relative overflow-hidden" id="book" aria-labelledby="cta-heading">
-        <div className="absolute -top-2/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-radial from-gold-400/7 to-transparent pointer-events-none" />
+        <div className="absolute -top-2/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-br from-gold-400/10 via-transparent to-transparent pointer-events-none" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center justify-center gap-4 mb-8">
             {[0, 1, 2].map(i => <div key={i} className="w-2 h-2 bg-gold-400 rotate-45 shrink-0" />)}

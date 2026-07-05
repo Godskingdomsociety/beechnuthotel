@@ -59,8 +59,9 @@ export default function Rooms() {
             {filtered.map((room, i) => (
               <ScrollReveal key={room.id} delay={0.1 * (i % 3)}>
                 <article className="bg-white rounded-lg overflow-hidden shadow-sm border border-navy-900/5 flex flex-col hover:-translate-y-1.5 hover:shadow-lg transition-all duration-300 group">
-                  <div className="relative overflow-hidden aspect-[16/10] bg-gradient-to-br from-navy-800 to-navy-950 flex items-center justify-center text-white/20 text-sm uppercase tracking-wider">
-                    {room.name}
+                  <div className="relative overflow-hidden aspect-[16/10]">
+                    <img src={room.image} alt={room.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
                     {room.badge !== 'Standard' && (
                       <span className={`absolute top-3 left-3 z-10 text-[0.6rem] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full ${
                         room.badge === 'Most Popular' ? 'bg-gold-400 text-navy-900' : room.badge === 'Presidential' ? 'bg-navy-950 text-gold-400' : 'bg-navy-900 text-white'
@@ -68,7 +69,6 @@ export default function Rooms() {
                         {room.badge}
                       </span>
                     )}
-                    <span className="absolute bottom-2 right-2 text-[0.6rem] text-white/70 bg-navy-950/65 px-2 py-0.5 rounded-full backdrop-blur-sm">1 of 4 photos</span>
                   </div>
                   <div className="p-5 flex flex-col flex-1">
                     <span className="text-xs font-semibold tracking-widest uppercase text-gold-500 mb-1">{room.type === 'presidential' ? 'Presidential Suite' : room.type.charAt(0).toUpperCase() + room.type.slice(1)}</span>

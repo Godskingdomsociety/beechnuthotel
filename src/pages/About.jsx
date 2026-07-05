@@ -41,7 +41,7 @@ export default function About() {
 
           <ScrollReveal delay={0.1}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-16">
-              <div className="bg-navy-800/20 h-[400px] flex items-center justify-center text-white/20 uppercase tracking-widest">Hotel Image</div>
+              <div className="h-[400px] bg-cover bg-center" style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-1.webp)' }} />
               <div>
                 <h3 className="font-display text-2xl font-bold text-navy-900 mb-3">Our Philosophy</h3>
                 <div className="w-12 h-0.5 bg-gold-400 mb-4" />
