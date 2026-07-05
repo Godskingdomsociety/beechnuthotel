@@ -1,42 +1,16 @@
-import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 
 export default function ScrollReveal({ children, className = '', delay = 0, style = {} }) {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    if (!('IntersectionObserver' in window)) {
-      el.style.opacity = '1'
-      el.style.transform = 'translateY(0)'
-      return
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.style.opacity = '1'
-          el.style.transform = 'translateY(0)'
-          observer.unobserve(el)
-        }
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <div
-      ref={ref}
+    <motion.div
       className={className}
-      style={{
-        opacity: 0,
-        transform: 'translateY(28px)',
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-        ...style,
-      }}
+      style={style}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-48px' }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 0.1, 0.25, 1] }}
     >
       {children}
-    </div>
+    </motion.div>
   )
 }

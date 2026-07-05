@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import ScrollReveal from '../components/ui/ScrollReveal'
 
 function CountdownTimer() {
@@ -37,10 +38,16 @@ function CountdownTimer() {
         { label: 'Mins', value: time.minutes },
         { label: 'Secs', value: time.seconds },
       ].map((unit) => (
-        <div key={unit.label} className="text-center">
+        <motion.div
+          key={unit.label}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          className="text-center"
+        >
           <span className="font-display text-3xl font-semibold text-navy-900 block leading-none min-w-[3ch]">{pad(unit.value)}</span>
           <span className="text-xs tracking-widest uppercase text-gray-400">{unit.label}</span>
-        </div>
+        </motion.div>
       ))}
     </div>
   )
@@ -86,7 +93,12 @@ export default function Offers() {
     <>
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
-        <div className="relative z-10 px-4 animate-fade-up">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
           <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Special <em className="italic text-gold-400 not-italic">Offers</em>
@@ -96,7 +108,7 @@ export default function Offers() {
             <span className="text-gold-400/60">›</span>
             <span className="text-gold-400 font-medium">Offers</span>
           </nav>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-16 lg:py-24">
@@ -120,21 +132,25 @@ export default function Offers() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {OFFERS.map((offer, i) => (
               <ScrollReveal key={offer.title} delay={0.1 * i}>
-                <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                <motion.div
+                  className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100"
+                  whileHover={{ y: -4, boxShadow: '0 16px 48px rgba(0,0,0,0.08)' }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
                   <div className="h-44 bg-cover bg-center" style={{ backgroundImage: `url(${offer.image})` }} />
                   <div className="p-6">
-                  <span className="text-xs font-semibold tracking-wider uppercase text-gold-500 mb-1 block">{offer.tag}</span>
-                  <h3 className="font-display text-xl font-bold text-navy-900 mb-1">{offer.title}</h3>
-                  <p className="text-sm italic text-gray-500 mb-3">{offer.subtitle}</p>
-                  <p className="text-sm text-gray-600 mb-4">{offer.desc}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-display text-lg font-semibold text-navy-900">{offer.price}</span>
-                    <Link to="/booking" className="px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">
-                      Book Offer
-                    </Link>
+                    <span className="text-xs font-semibold tracking-wider uppercase text-gold-500 mb-1 block">{offer.tag}</span>
+                    <h3 className="font-display text-xl font-bold text-navy-900 mb-1">{offer.title}</h3>
+                    <p className="text-sm italic text-gray-500 mb-3">{offer.subtitle}</p>
+                    <p className="text-sm text-gray-600 mb-4">{offer.desc}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="font-display text-lg font-semibold text-navy-900">{offer.price}</span>
+                      <Link to="/booking" className="px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">
+                        Book Offer
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>

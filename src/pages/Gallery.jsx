@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 import ScrollReveal from '../components/ui/ScrollReveal'
 
 const CATEGORIES = ['all', 'rooms', 'dining', 'events', 'facilities']
@@ -24,7 +25,12 @@ export default function Gallery() {
     <>
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
-        <div className="relative z-10 px-4 animate-fade-up">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
           <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Photo <em className="italic text-gold-400 not-italic">Gallery</em>
@@ -34,7 +40,7 @@ export default function Gallery() {
             <span className="text-gold-400/60">›</span>
             <span className="text-gold-400 font-medium">Gallery</span>
           </nav>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-16 lg:py-24">
@@ -49,9 +55,11 @@ export default function Gallery() {
 
           <div className="flex items-center justify-center gap-2 flex-wrap mb-8" role="group" aria-label="Filter gallery by category">
             {CATEGORIES.map(cat => (
-              <button
+              <motion.button
                 key={cat}
                 onClick={() => setFilter(cat)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className={`px-5 py-2 text-xs font-semibold tracking-wider uppercase rounded-full border transition-all duration-300 ${
                   filter === cat
                     ? 'bg-navy-900 text-gold-400 border-navy-900 shadow-md'
@@ -59,25 +67,40 @@ export default function Gallery() {
                 }`}
               >
                 {cat === 'all' ? 'All' : cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </button>
+              </motion.button>
             ))}
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filtered.map(item => (
-              <div
-                key={item.id}
-                className="group relative aspect-square bg-navy-800/10 overflow-hidden cursor-zoom-in hover:shadow-md transition-all duration-300 rounded-sm"
-              >
-                <img src={item.image} alt={item.caption} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-                <div className="absolute inset-0 bg-gold-500/0 group-hover:bg-gold-500/60 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
-                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                  </svg>
-                </div>
-              </div>
-            ))}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={filter}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            >
+              {filtered.map(item => (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="group relative aspect-square bg-navy-800/10 overflow-hidden cursor-zoom-in rounded-sm"
+                  whileHover={{ boxShadow: '0 12px 40px rgba(0,0,0,0.15)' }}
+                >
+                  <img src={item.image} alt={item.caption} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <div className="absolute inset-0 bg-gold-500/0 group-hover:bg-gold-500/60 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                    </svg>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
     </>

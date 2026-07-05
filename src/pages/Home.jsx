@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 import { TESTIMONIALS, STATS } from '../data/testimonials'
 import { ROOMS } from '../data/rooms'
 import ScrollReveal from '../components/ui/ScrollReveal'
@@ -44,16 +45,21 @@ function TestimonialCarousel() {
   return (
     <div className="relative">
       <div className="overflow-hidden">
-        <div
-          className="flex gap-4 transition-transform duration-500"
-          style={{ transform: `translateX(-${index * 100}%)` }}
+        <motion.div
+          className="flex gap-4"
+          animate={{ x: `-${index * 100}%` }}
+          transition={{ type: 'spring', stiffness: 200, damping: 28 }}
         >
           {TESTIMONIALS.map((t) => (
             <div key={t.id} className="min-w-full sm:min-w-[calc(50%-0.5rem)] lg:min-w-[calc(33.333%-0.667rem)] shrink-0">
-              <div className="bg-white rounded-sm p-6 shadow-sm border-l-3 border-gold-400 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+              <motion.div
+                className="bg-white rounded-sm p-6 shadow-sm border-l-3 border-gold-400"
+                whileHover={{ y: -4, boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
                 <StarRating count={t.rating} />
                 <p className="font-accent italic text-lg text-navy-900 leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-full bg-gold-100 shrink-0 flex items-center justify-center text-gold-600 text-xs font-bold tracking-wider">
                     {t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                   </div>
@@ -62,29 +68,49 @@ function TestimonialCarousel() {
                     <span className="text-xs text-gray-500 block">{t.meta}</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <div className="flex justify-center gap-2 mt-6">
-        <button
+        <motion.button
           onClick={() => { prev(); resetAuto() }}
-          className="w-11 h-11 rounded-full border border-gold-400 text-gold-400 flex items-center justify-center hover:bg-gold-400 hover:text-navy-900 transition-all"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-11 h-11 rounded-full border border-gold-400 text-gold-400 flex items-center justify-center hover:bg-gold-400 hover:text-navy-900 transition-colors"
           aria-label="Previous testimonial"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           onClick={() => { next(); resetAuto() }}
-          className="w-11 h-11 rounded-full border border-gold-400 text-gold-400 flex items-center justify-center hover:bg-gold-400 hover:text-navy-900 transition-all"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="w-11 h-11 rounded-full border border-gold-400 text-gold-400 flex items-center justify-center hover:bg-gold-400 hover:text-navy-900 transition-colors"
           aria-label="Next testimonial"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
-        </button>
+        </motion.button>
       </div>
     </div>
   )
+}
+
+const heroBgVariants = {
+  enter: { opacity: 0, scale: 1.05 },
+  center: { opacity: 1, scale: 1, transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1] } },
+  exit: { opacity: 0, scale: 1.05, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
+}
+
+const heroContentVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] } },
+}
+
+const statVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 * i, ease: [0.25, 0.1, 0.25, 1] } }),
 }
 
 export default function Home() {
@@ -99,47 +125,93 @@ export default function Home() {
   return (
     <>
       <section className="relative h-screen min-h-[680px] flex items-center justify-center overflow-hidden bg-navy-950" aria-label="Welcome to Beechnut Hotel Warri">
-        {heroSlides.map((src, i) => (
-          <div
-            key={src}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${i === slideIndex ? 'opacity-100' : 'opacity-0'}`}
-            style={{ backgroundImage: `url(${src})` }}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slideIndex}
+            variants={heroBgVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroSlides[slideIndex]})` }}
           />
-        ))}
+        </AnimatePresence>
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950/70 via-navy-950/40 to-navy-950/65 z-10" />
-        <div className="relative z-20 text-center max-w-3xl px-4 animate-fade-up">
-          <span className="font-body text-xs font-semibold tracking-[0.25em] uppercase text-gold-400 block mb-3">Welcome to Warri's Finest</span>
+        <motion.div
+          variants={heroContentVariants}
+          initial="hidden"
+          animate="visible"
+          className="relative z-20 text-center max-w-3xl px-4"
+        >
+          <motion.span
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="font-body text-xs font-semibold tracking-[0.25em] uppercase text-gold-400 block mb-3"
+          >
+            Welcome to Warri's Finest
+          </motion.span>
           <h1 className="font-display text-[clamp(3rem,8vw,6.5rem)] font-normal text-white leading-none tracking-tight mb-4">
             Beechnut<br />Hotel Warri
           </h1>
-          <p className="font-body text-lg text-white/80 font-light tracking-wider mb-8">Where Nigerian warmth meets world-class luxury</p>
-          <div className="flex items-center justify-center gap-3 flex-wrap">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="font-body text-lg text-white/80 font-light tracking-wider mb-8"
+          >
+            Where Nigerian warmth meets world-class luxury
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+            className="flex items-center justify-center gap-3 flex-wrap"
+          >
             <Link to="/booking" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(161,98,7,0.25)]">
               Reserve a Room
             </Link>
             <a href="#rooms" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold tracking-wider uppercase rounded-sm border-2 border-gold-400 text-white hover:bg-gold-400 hover:text-navy-900 transition-all duration-300">
               Explore Rooms
             </a>
-          </div>
-        </div>
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/55 text-xs tracking-wider uppercase">
+          </motion.div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/55 text-xs tracking-wider uppercase"
+        >
           <span>Scroll</span>
           <div className="w-px h-12 bg-gradient-to-b from-transparent to-gold-400/70 animate-scroll-line" />
-        </div>
+        </motion.div>
       </section>
 
-      <section className="bg-gold-500 py-10" aria-label="Hotel highlights">
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="bg-gold-500 py-10"
+        aria-label="Hotel highlights"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
             {STATS.map((stat, i) => (
-              <div key={stat.label} className="animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
+              <motion.div
+                key={stat.label}
+                custom={i}
+                variants={statVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 <span className="font-display text-4xl font-semibold text-navy-900 leading-none block">{stat.value}</span>
                 <span className="text-sm font-medium tracking-widest uppercase text-navy-900/75 mt-2 block">{stat.label}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="py-16 lg:py-24 bg-surface" id="rooms" aria-labelledby="rooms-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -155,7 +227,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ROOMS.slice(0, 3).map((room, i) => (
               <ScrollReveal key={room.id} delay={0.1 * (i + 1)}>
-                <article className="bg-white rounded-sm overflow-hidden shadow-sm hover:-translate-y-1.5 hover:shadow-lg transition-all duration-300 group">
+                <motion.article
+                  className="bg-white rounded-sm overflow-hidden shadow-sm group"
+                  whileHover={{ y: -6, boxShadow: '0 20px 60px rgba(0,0,0,0.12)' }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
                   <div className="overflow-hidden relative aspect-[4/3]">
                     <img src={room.image} alt={room.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-950/40 via-transparent to-transparent" />
@@ -173,7 +249,7 @@ export default function Home() {
                     <div className="flex flex-wrap gap-3 mb-3">
                       {room.amenities.slice(0, 4).map((a) => (
                         <span key={a} className="flex items-center gap-1 text-xs text-gray-500">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gold-500 shrink-0">{/* icon */}</svg>
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gold-500 shrink-0" />
                           {a}
                         </span>
                       ))}
@@ -188,7 +264,7 @@ export default function Home() {
                       <Link to={`/booking?room=${room.id}`} className="flex-1 text-center px-3 py-2 text-xs font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">Book Now</Link>
                     </div>
                   </div>
-                </article>
+                </motion.article>
               </ScrollReveal>
             ))}
           </div>
@@ -203,47 +279,99 @@ export default function Home() {
 
       <section aria-labelledby="usp-heading" id="why-us">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] overflow-hidden">
-          <div className="bg-surface p-8 lg:p-12 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            className="bg-surface p-8 lg:p-12 flex flex-col justify-center"
+          >
             <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gold-500 block mb-3">Our Promise</span>
             <h2 id="usp-heading" className="font-display text-3xl font-medium text-navy-900 mb-3">Hospitality Rooted in Warri's Soul</h2>
             <div className="w-12 h-0.5 bg-gold-400 mb-3" />
             <p className="text-navy-900/70 mb-3">From the moment you arrive, every interaction is crafted with intention. Our team brings the city's legendary warmth and community spirit into every room, every plate, every smile.</p>
             <p className="text-navy-900/70 mb-4">We don't just host guests — we welcome family.</p>
             <Link to="/about" className="self-start px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm border-2 border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white transition-all">Our Story</Link>
-          </div>
-          <div className="min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/dining/gold-restaurant.webp)' }} />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            className="min-h-[300px] lg:min-h-full bg-cover bg-center"
+            style={{ backgroundImage: 'url(/images/dining/gold-restaurant.webp)' }}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] overflow-hidden bg-navy-900">
-          <div className="order-2 lg:order-1 bg-navy-900 p-8 lg:p-12 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="order-2 lg:order-1 bg-navy-900 p-8 lg:p-12 flex flex-col justify-center"
+          >
             <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gold-300 block mb-3">Location</span>
             <h2 className="font-display text-3xl font-medium text-white mb-3">At the Heart of Warri</h2>
             <div className="w-12 h-0.5 bg-gold-400 mb-3" />
             <p className="text-white/70 mb-3">Strategically positioned in the commercial and cultural centre of Warri, Beechnut places you minutes from key business hubs, entertainment districts, and the vibrant energy that defines this city.</p>
             <p className="text-white/70 mb-4">Whether you're here for business or leisure, our location is your advantage.</p>
             <Link to="/contact" className="self-start px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm border-2 border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-navy-900 transition-all">Get Directions</Link>
-          </div>
-          <div className="order-1 lg:order-2 min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-3.webp)' }} />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="order-1 lg:order-2 min-h-[300px] lg:min-h-full bg-cover bg-center"
+            style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-3.webp)' }}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] overflow-hidden">
-          <div className="bg-surface p-8 lg:p-12 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            className="bg-surface p-8 lg:p-12 flex flex-col justify-center"
+          >
             <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gold-500 block mb-3">Facilities</span>
             <h2 className="font-display text-3xl font-medium text-navy-900 mb-3">World-Class Amenities</h2>
             <div className="w-12 h-0.5 bg-gold-400 mb-3" />
             <p className="text-navy-900/70 mb-3">A fully-equipped fitness centre, temperature-controlled swimming pool, full-service business centre, event spaces for up to 500 guests, and 24-hour room service — all under one roof.</p>
             <p className="text-navy-900/70 mb-4">Excellence is not an amenity here. It is the standard.</p>
             <Link to="/facilities" className="self-start px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm border-2 border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white transition-all">Explore Facilities</Link>
-          </div>
-          <div className="min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/rooms/deluxe-suite.webp)' }} />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            className="min-h-[300px] lg:min-h-full bg-cover bg-center"
+            style={{ backgroundImage: 'url(/images/rooms/deluxe-suite.webp)' }}
+          />
         </div>
       </section>
 
-      <section className="relative min-h-[580px] flex items-center bg-navy-950 overflow-hidden" id="dining" aria-labelledby="dining-heading">
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="relative min-h-[580px] flex items-center bg-navy-950 overflow-hidden"
+        id="dining"
+        aria-labelledby="dining-heading"
+      >
         <div className="absolute inset-0 bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(/images/dining/poolside-grill.webp)' }} />
         <div className="absolute inset-0 bg-navy-950/70 z-10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
-          <div className="max-w-xl">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            className="max-w-xl"
+          >
             <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gold-400 block mb-3">Culinary Experiences</span>
             <h2 id="dining-heading" className="font-display text-4xl font-medium text-white mb-3">Flavours That Tell a Story</h2>
             <div className="w-12 h-0.5 bg-gold-400 mb-3" />
@@ -255,9 +383,9 @@ export default function Home() {
               <Link to="/dining" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">Explore Dining</Link>
               <Link to="/dining#reservations" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold tracking-wider uppercase rounded-sm border-2 border-gold-400 text-white hover:bg-gold-400 hover:text-navy-900 transition-all">Reserve a Table</Link>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="py-16 lg:py-24 bg-surface-alt" id="testimonials" aria-labelledby="testimonials-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -272,22 +400,71 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-navy-950 text-center relative overflow-hidden" id="book" aria-labelledby="cta-heading">
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="py-16 lg:py-24 bg-navy-950 text-center relative overflow-hidden"
+        id="book"
+        aria-labelledby="cta-heading"
+      >
         <div className="absolute -top-2/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-br from-gold-400/10 via-transparent to-transparent pointer-events-none" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex items-center justify-center gap-4 mb-8">
-            {[0, 1, 2].map(i => <div key={i} className="w-2 h-2 bg-gold-400 rotate-45 shrink-0" />)}
-          </div>
-          <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gold-400 block mb-3">Your Stay Awaits</span>
-          <h2 id="cta-heading" className="font-display text-4xl lg:text-5xl font-normal text-white leading-tight mb-3">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <div className="flex items-center justify-center gap-4 mb-8">
+              {[0, 1, 2].map(i => <motion.div key={i} animate={{ rotate: 360 }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} className="w-2 h-2 bg-gold-400 shrink-0" />)}
+            </div>
+          </motion.div>
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="text-xs font-semibold tracking-[0.18em] uppercase text-gold-400 block mb-3"
+          >
+            Your Stay Awaits
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            id="cta-heading"
+            className="font-display text-4xl lg:text-5xl font-normal text-white leading-tight mb-3"
+          >
             Experience Warri's Finest.<br />Book Your Stay Today.
-          </h2>
-          <p className="text-white/65 mb-8 max-w-lg mx-auto">Flexible rates, special packages, and personalised service — every reservation is crafted just for you.</p>
-          <div className="flex gap-3 justify-center flex-wrap mb-8">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="text-white/65 mb-8 max-w-lg mx-auto"
+          >
+            Flexible rates, special packages, and personalised service — every reservation is crafted just for you.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="flex gap-3 justify-center flex-wrap mb-8"
+          >
             <Link to="/booking" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">Reserve a Room</Link>
             <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold tracking-wider uppercase rounded-sm border-2 border-gold-400 text-white hover:bg-gold-400 hover:text-navy-900 transition-all">Speak to Us</Link>
-          </div>
-          <div className="flex gap-6 justify-center flex-wrap">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="flex gap-6 justify-center flex-wrap"
+          >
             {[
               { icon: 'shield', label: 'Best Rate Guaranteed' },
               { icon: 'check', label: 'Free Cancellation Available' },
@@ -302,9 +479,9 @@ export default function Home() {
                 {label}
               </span>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   )
 }

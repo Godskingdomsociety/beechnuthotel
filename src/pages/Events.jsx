@@ -1,5 +1,6 @@
-import ScrollReveal from '../components/ui/ScrollReveal'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import ScrollReveal from '../components/ui/ScrollReveal'
 
 const EVENT_SPACES = [
   {
@@ -37,7 +38,12 @@ export default function Events() {
     <>
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
-        <div className="relative z-10 px-4 animate-fade-up">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
           <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Events &amp; <em className="italic text-gold-400 not-italic">Conferences</em>
@@ -47,7 +53,7 @@ export default function Events() {
             <span className="text-gold-400/60">›</span>
             <span className="text-gold-400 font-medium">Events</span>
           </nav>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-16 lg:py-24">
@@ -64,7 +70,11 @@ export default function Events() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             {EVENT_SPACES.map((space, i) => (
               <ScrollReveal key={space.name} delay={0.1 * i}>
-                <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all duration-300">
+                <motion.div
+                  className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100"
+                  whileHover={{ y: -4, boxShadow: '0 16px 48px rgba(0,0,0,0.08)' }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
                   <div className="h-52 bg-cover bg-center" style={{ backgroundImage: `url(${space.image})` }} />
                   <div className="p-6">
                     <span className="text-xs font-semibold tracking-wider uppercase text-gold-500 block mb-1">{space.capacity}</span>
@@ -79,14 +89,19 @@ export default function Events() {
                       ))}
                     </ul>
                   </div>
-                </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-navy-950 text-center">
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="py-16 bg-navy-950 text-center"
+      >
         <div className="max-w-xl mx-auto px-4">
           <span className="text-xs font-semibold tracking-[0.24em] uppercase text-gold-400 block mb-2">Start Planning</span>
           <h2 className="font-display text-3xl lg:text-4xl font-bold text-white mb-3">Let's Create Something <em className="text-gold-400 not-italic">Extraordinary</em></h2>
@@ -95,7 +110,7 @@ export default function Events() {
             Contact Events Team
           </Link>
         </div>
-      </section>
+      </motion.section>
     </>
   )
 }

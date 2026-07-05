@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import ScrollReveal from '../components/ui/ScrollReveal'
 
 const DINING_VENUES = [
@@ -30,7 +31,12 @@ export default function Dining() {
     <>
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950" />
-        <div className="relative z-10 px-4 animate-fade-up">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
           <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Dining &amp; <em className="italic text-gold-400 not-italic">Bar</em>
@@ -40,7 +46,7 @@ export default function Dining() {
             <span className="text-gold-400/60">›</span>
             <span className="text-gold-400 font-medium">Dining</span>
           </nav>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-16 lg:py-24">
@@ -58,8 +64,21 @@ export default function Dining() {
             {DINING_VENUES.map((venue, i) => (
               <ScrollReveal key={venue.name} delay={0.1 * i}>
                 <div className={`grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[400px] overflow-hidden rounded-lg shadow-sm ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                  <div className="min-h-[300px] lg:min-h-full bg-cover bg-center" style={{ backgroundImage: `url(${venue.image})` }} />
-                  <div className={`p-8 lg:p-12 flex flex-col justify-center ${i % 2 === 1 ? 'bg-navy-950' : 'bg-white'}`}>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="min-h-[300px] lg:min-h-full bg-cover bg-center"
+                    style={{ backgroundImage: `url(${venue.image})` }}
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, x: i % 2 === 0 ? 30 : -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+                    className={`p-8 lg:p-12 flex flex-col justify-center ${i % 2 === 1 ? 'bg-navy-950' : 'bg-white'}`}
+                  >
                     <span className={`text-xs font-semibold tracking-[0.18em] uppercase block mb-2 ${i % 2 === 1 ? 'text-gold-400' : 'text-gold-500'}`}>
                       {venue.tagline}
                     </span>
@@ -76,7 +95,7 @@ export default function Dining() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </motion.div>
                 </div>
               </ScrollReveal>
             ))}

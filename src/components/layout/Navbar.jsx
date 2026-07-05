@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -10,6 +11,17 @@ const NAV_LINKS = [
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
+
+const menuVariants = {
+  hidden: { x: '100%' },
+  visible: { x: 0, transition: { type: 'spring', stiffness: 200, damping: 28, staggerChildren: 0.05, delayChildren: 0.1 } },
+  exit: { x: '100%', transition: { type: 'spring', stiffness: 200, damping: 28 } },
+}
+
+const menuItemVariants = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -51,7 +63,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 h-20 flex items-center transition-all duration-300 ${
           scrolled ? 'bg-navy-950/97 backdrop-blur-md shadow-[0_1px_0_rgba(201,168,76,0.2)]' : 'bg-transparent'
         }`}
@@ -85,27 +100,50 @@ export default function Navbar() {
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
           >
-            <span className={`block w-7 h-0.5 bg-white rounded-full transition-all duration-300 ${mobileOpen ? 'translate-y-[7px] rotate-45' : ''}`} />
-            <span className={`block w-7 h-0.5 bg-white rounded-full transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-7 h-0.5 bg-white rounded-full transition-all duration-300 ${mobileOpen ? '-translate-y-[7px] -rotate-45' : ''}`} />
+            <motion.span
+              animate={mobileOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              className="block w-7 h-0.5 bg-white rounded-full origin-center"
+            />
+            <motion.span
+              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="block w-7 h-0.5 bg-white rounded-full"
+            />
+            <motion.span
+              animate={mobileOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              className="block w-7 h-0.5 bg-white rounded-full origin-center"
+            />
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
-      <div
-        className={`fixed inset-0 z-40 bg-navy-950 flex flex-col items-center justify-center gap-6 transition-transform duration-500 ${
-          mobileOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {NAV_LINKS.map(({ to, label }) => (
-          <NavLink key={to} to={to} className={mobileNavLinkClass} end={to === '/'} onClick={() => setMobileOpen(false)}>
-            {label}
-          </NavLink>
-        ))}
-        <Link to="/booking" className="mt-4 px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">
-          Book Now
-        </Link>
-      </div>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="fixed inset-0 z-40 bg-navy-950 flex flex-col items-center justify-center gap-6"
+          >
+            {NAV_LINKS.map(({ to, label }) => (
+              <motion.div key={to} variants={menuItemVariants}>
+                <NavLink to={to} className={mobileNavLinkClass} end={to === '/'} onClick={() => setMobileOpen(false)}>
+                  {label}
+                </NavLink>
+              </motion.div>
+            ))}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/booking"
+                className="mt-4 px-6 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all"
+                onClick={() => setMobileOpen(false)}
+              >
+                Book Now
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

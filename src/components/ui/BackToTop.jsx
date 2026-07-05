@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false)
@@ -10,14 +11,22 @@ export default function BackToTop() {
   }, [])
 
   return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      aria-label="Back to top"
-      className={`fixed bottom-[96px] right-6 z-30 flex items-center justify-center w-11 h-11 rounded-full border border-gold-400 bg-navy-950 text-gold-400 text-xl leading-none cursor-pointer transition-all duration-300 ${
-        visible ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-3'
-      }`}
-    >
-      &uarr;
-    </button>
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Back to top"
+          initial={{ opacity: 0, scale: 0.8, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 12 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+          whileHover={{ scale: 1.1, borderColor: '#d4a22a' }}
+          whileTap={{ scale: 0.95 }}
+          className="fixed bottom-[96px] right-6 z-30 flex items-center justify-center w-11 h-11 rounded-full border border-gold-400 bg-navy-950 text-gold-400 text-xl leading-none cursor-pointer"
+        >
+          &uarr;
+        </motion.button>
+      )}
+    </AnimatePresence>
   )
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const SOCIAL_LINKS = [
   {
@@ -34,14 +35,36 @@ const GUEST_LINKS = [
   { label: 'Contact & Directions', to: '/contact' },
 ]
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
+}
+
 export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-navy-950 text-white/70 pt-24" role="contentinfo">
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="bg-navy-950 text-white/70 pt-24"
+      role="contentinfo"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-white/10">
-          <div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-white/10"
+        >
+          <motion.div variants={itemVariants}>
             <Link to="/" className="inline-block mb-4">
               <span className="font-display text-2xl font-medium text-white block">Beechnut</span>
               <span className="text-xs tracking-[0.18em] uppercase text-gold-400 block">Hotel Warri</span>
@@ -51,23 +74,24 @@ export default function Footer() {
             </p>
             <div className="flex gap-3" aria-label="Social media links">
               {SOCIAL_LINKS.map(({ label, href, path }) => (
-                <a
+                <motion.a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 transition-all duration-300 hover:border-gold-400 hover:text-gold-400 hover:bg-gold-400/10"
+                  whileHover={{ scale: 1.1, borderColor: '#d4a22a', color: '#d4a22a' }}
+                  className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/60 transition-colors duration-300 hover:border-gold-400 hover:text-gold-400 hover:bg-gold-400/10"
                   aria-label={`Beechnut Hotel on ${label}`}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d={path} />
                   </svg>
-                </a>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="font-body text-xs font-bold tracking-[0.15em] uppercase text-gold-400 mb-4">Explore</h3>
             <ul className="flex flex-col gap-2">
               {QUICK_LINKS.map(({ label, to }) => (
@@ -78,9 +102,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="font-body text-xs font-bold tracking-[0.15em] uppercase text-gold-400 mb-4">Guest Services</h3>
             <ul className="flex flex-col gap-2">
               {GUEST_LINKS.map(({ label, to }) => (
@@ -91,9 +115,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="font-body text-xs font-bold tracking-[0.15em] uppercase text-gold-400 mb-4">Find Us</h3>
             <address className="not-italic space-y-3">
               <div className="flex items-start gap-2 text-sm text-white/55">
@@ -133,8 +157,8 @@ export default function Footer() {
                 </button>
               </form>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between py-4 text-xs text-white/35 gap-2">
           <span>&copy; {year} Beechnut Hotel Warri. All rights reserved.</span>
@@ -145,6 +169,6 @@ export default function Footer() {
           </span>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

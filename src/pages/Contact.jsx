@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import ScrollReveal from '../components/ui/ScrollReveal'
 
 export default function Contact() {
@@ -14,7 +15,12 @@ export default function Contact() {
     <>
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
-        <div className="relative z-10 px-4 animate-fade-up">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
           <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Get in <em className="italic text-gold-400 not-italic">Touch</em>
@@ -24,7 +30,7 @@ export default function Contact() {
             <span className="text-gold-400/60">›</span>
             <span className="text-gold-400 font-medium">Contact</span>
           </nav>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-16 lg:py-24">
@@ -47,7 +53,14 @@ export default function Contact() {
                   { icon: 'mail', label: 'Email', value: 'info@beechnuthotelwarri.com', href: 'mailto:info@beechnuthotelwarri.com' },
                   { icon: 'clock', label: 'Reception', value: 'Open 24 hours — 7 days a week' },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-4">
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="flex items-start gap-4"
+                  >
                     <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center shrink-0">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-gold-600">
                         {item.icon === 'map' && <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></>}
@@ -64,14 +77,21 @@ export default function Contact() {
                         <p className="text-gray-500">{item.value}</p>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
               {!submitted ? (
-                <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-lg p-6 sm:p-8 shadow-sm">
+                <motion.form
+                  onSubmit={handleSubmit}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="bg-white border border-gray-200 rounded-lg p-6 sm:p-8 shadow-sm"
+                >
                   <span className="text-xs font-mono tracking-widest uppercase text-gold-500 block mb-4 pb-3 border-b border-gray-100">Send a Message</span>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -98,13 +118,18 @@ export default function Contact() {
                   <button type="submit" className="px-8 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">
                     Send Message
                   </button>
-                </form>
+                </motion.form>
               ) : (
-                <div className="bg-white border border-gray-200 rounded-lg p-8 text-center shadow-sm">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+                  className="bg-white border border-gray-200 rounded-lg p-8 text-center shadow-sm"
+                >
                   <div className="w-16 h-16 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-2xl mx-auto mb-4">✓</div>
                   <h3 className="font-display text-2xl font-semibold text-navy-900 mb-2">Message Sent!</h3>
                   <p className="text-gray-500">Thank you for reaching out. Our team will respond within 24 hours.</p>
-                </div>
+                </motion.div>
               )}
             </ScrollReveal>
           </div>

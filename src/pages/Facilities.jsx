@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import ScrollReveal from '../components/ui/ScrollReveal'
 
 const FACILITIES_LIST = [
@@ -49,7 +50,12 @@ export default function Facilities() {
     <>
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
-        <div className="relative z-10 px-4 animate-fade-up">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
           <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Our <em className="italic text-gold-400 not-italic">Facilities</em>
@@ -59,7 +65,7 @@ export default function Facilities() {
             <span className="text-gold-400/60">›</span>
             <span className="text-gold-400 font-medium">Facilities</span>
           </nav>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-16 lg:py-24">
@@ -75,9 +81,16 @@ export default function Facilities() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {FACILITIES_LIST.map((facility, i) => (
-              <ScrollReveal key={facility.name} delay={0.1 * i}>
-                <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:-translate-y-1 hover:shadow-md transition-all duration-300 group">
-                  <div className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center mb-4 group-hover:bg-gold-200 transition-colors">
+              <ScrollReveal key={facility.name} delay={0.05 * i}>
+                <motion.div
+                  className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 group"
+                  whileHover={{ y: -4, boxShadow: '0 16px 48px rgba(0,0,0,0.08)' }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
+                  <motion.div
+                    className="w-12 h-12 rounded-full bg-gold-100 flex items-center justify-center mb-4 group-hover:bg-gold-200 transition-colors"
+                    whileHover={{ rotate: [0, -10, 10, -5, 0], transition: { duration: 0.5 } }}
+                  >
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-gold-600">
                       {facility.icon === 'pool' && <><path d="M2 20h20M6 4v12M18 4v12" /><path d="M4 16h16" /></>}
                       {facility.icon === 'gym' && <><path d="M6.5 6.5h11M6.5 17.5h11" /><rect x="3" y="10" width="18" height="4" rx="1" /></>}
@@ -88,10 +101,10 @@ export default function Facilities() {
                       {facility.icon === 'parking' && <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M9 17V7h4a3 3 0 0 1 0 6H9" /></>}
                       {facility.icon === 'laundry' && <><path d="M7 22V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16" /><path d="M17 10H7" /></>}
                     </svg>
-                  </div>
+                  </motion.div>
                   <h3 className="font-display text-lg font-semibold text-navy-900 mb-2">{facility.name}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed">{facility.description}</p>
-                </div>
+                </motion.div>
               </ScrollReveal>
             ))}
           </div>

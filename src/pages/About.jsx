@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import ScrollReveal from '../components/ui/ScrollReveal'
 
 const TEAM = [
@@ -13,7 +14,12 @@ export default function About() {
     <>
       <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
-        <div className="relative z-10 px-4 animate-fade-up">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
           <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
           <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
             Our <em className="italic text-gold-400 not-italic">Story</em>
@@ -23,7 +29,7 @@ export default function About() {
             <span className="text-gold-400/60">›</span>
             <span className="text-gold-400 font-medium">About</span>
           </nav>
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-16 lg:py-24">
@@ -40,15 +46,33 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-16">
-              <div className="h-[400px] bg-cover bg-center" style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-1.webp)' }} />
-              <div>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-16"
+            >
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+                className="h-[400px] bg-cover bg-center"
+                style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-1.webp)' }}
+              />
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+              >
                 <h3 className="font-display text-2xl font-bold text-navy-900 mb-3">Our Philosophy</h3>
                 <div className="w-12 h-0.5 bg-gold-400 mb-4" />
                 <p className="text-gray-600 mb-4">Every detail at Beechnut is intentional — from the curated art in our lobbies to the locally sourced ingredients in our kitchen, from the way our staff are trained to remember your name to the precision of our turndown service.</p>
                 <p className="text-gray-600">We believe that true luxury is not about opulence alone. It is about feeling seen, valued, and cared for. It is the warmth of a genuine smile after a long journey. It is a space that respects your privacy while anticipating your needs. This is the Beechnut difference.</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
@@ -59,14 +83,18 @@ export default function About() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {TEAM.map((member, i) => (
                 <ScrollReveal key={member.name} delay={0.1 * i}>
-                  <div className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 text-center p-6">
+                  <motion.div
+                    className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 text-center p-6"
+                    whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  >
                     <div className="w-20 h-20 rounded-full bg-navy-800/10 mx-auto mb-4 flex items-center justify-center text-navy-900/30 text-2xl font-display">
                       {member.name.charAt(0)}
                     </div>
                     <h3 className="font-display text-lg font-semibold text-navy-900">{member.name}</h3>
                     <span className="text-xs font-semibold tracking-wider uppercase text-gold-500 block mb-2">{member.role}</span>
                     <p className="text-sm text-gray-500">{member.desc}</p>
-                  </div>
+                  </motion.div>
                 </ScrollReveal>
               ))}
             </div>
