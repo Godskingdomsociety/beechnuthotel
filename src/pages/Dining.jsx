@@ -1,0 +1,90 @@
+import { Link } from 'react-router-dom'
+import ScrollReveal from '../components/ui/ScrollReveal'
+
+const DINING_VENUES = [
+  {
+    name: 'The Gold Restaurant',
+    tagline: 'Fine Dining, Nigerian Soul',
+    description: 'Elegant à la carte dining celebrating Nigeria\'s most iconic flavours with a contemporary fine-dining twist. Our signature banga bisque, pepper-rubbed grilled lobster, and plantain crème brûlée are guest favourites.',
+    image: null,
+    highlights: ['À la carte menu', 'Private dining room', 'Wine cellar', 'Open daily 6:30am–10pm'],
+  },
+  {
+    name: 'Poolside Grill & Bar',
+    tagline: 'Casual Luxury by the Water',
+    description: 'Relaxed poolside dining serving wood-fired pizzas, grilled seafood, fresh salads, and handcrafted cocktails. The perfect spot for a lazy afternoon or sundowner.',
+    image: null,
+    highlights: ['Wood-fired grill', 'Cocktail bar', 'Poolside seating', 'Open 11am–11pm'],
+  },
+  {
+    name: 'Skyview Rooftop Bar',
+    tagline: 'Warri\'s Best Views',
+    description: 'Perched on the top floor, our rooftop bar offers panoramic views of the Warri skyline. Sip on signature cocktails, champagne, and premium spirits as the sun sets over the Niger Delta.',
+    image: null,
+    highlights: ['Panoramic views', 'Signature cocktails', 'Live music Fri–Sat', 'Open 4pm–late'],
+  },
+]
+
+export default function Dining() {
+  return (
+    <>
+      <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950" />
+        <div className="relative z-10 px-4 animate-fade-up">
+          <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
+          <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
+            Dining &amp; <em className="italic text-gold-400 not-italic">Bar</em>
+          </h1>
+          <nav className="flex items-center justify-center gap-2 text-sm text-white/50" aria-label="Breadcrumb">
+            <Link to="/" className="text-white/70 hover:text-gold-400 transition-colors">Home</Link>
+            <span className="text-gold-400/60">›</span>
+            <span className="text-gold-400 font-medium">Dining</span>
+          </nav>
+        </div>
+      </section>
+
+      <section className="py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <span className="text-xs font-semibold tracking-[0.24em] uppercase text-gold-500 block mb-2">Culinary Experiences</span>
+              <h2 className="font-display text-3xl lg:text-4xl font-bold text-navy-900 mb-3">Three Venues, One Philosophy</h2>
+              <div className="w-12 h-0.5 bg-gold-400 mx-auto mb-4" />
+              <p className="text-gray-500">Every dish at Beechnut is a celebration of Nigeria's extraordinary culinary heritage, reimagined with precision and presented with pride.</p>
+            </div>
+          </ScrollReveal>
+
+          <div className="space-y-8">
+            {DINING_VENUES.map((venue, i) => (
+              <ScrollReveal key={venue.name} delay={0.1 * i}>
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[400px] overflow-hidden rounded-lg shadow-sm ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                  <div className="bg-navy-800/20 min-h-[300px] lg:min-h-full flex items-center justify-center text-white/20 text-lg uppercase tracking-widest">
+                    {venue.name}
+                  </div>
+                  <div className={`p-8 lg:p-12 flex flex-col justify-center ${i % 2 === 1 ? 'bg-navy-950' : 'bg-white'}`}>
+                    <span className={`text-xs font-semibold tracking-[0.18em] uppercase block mb-2 ${i % 2 === 1 ? 'text-gold-400' : 'text-gold-500'}`}>
+                      {venue.tagline}
+                    </span>
+                    <h3 className={`font-display text-2xl lg:text-3xl font-bold mb-3 ${i % 2 === 1 ? 'text-white' : 'text-navy-900'}`}>
+                      {venue.name}
+                    </h3>
+                    <div className={`w-12 h-0.5 mb-4 ${i % 2 === 1 ? 'bg-gold-400' : 'bg-gold-500'}`} />
+                    <p className={`mb-4 ${i % 2 === 1 ? 'text-white/70' : 'text-gray-600'}`}>{venue.description}</p>
+                    <ul className="space-y-1.5">
+                      {venue.highlights.map(h => (
+                        <li key={h} className={`flex items-center gap-2 text-sm ${i % 2 === 1 ? 'text-white/60' : 'text-gray-500'}`}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gold-400 shrink-0"><path d="M5 12l5 5L20 7" /></svg>
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
