@@ -149,7 +149,7 @@ export default function Booking() {
       `*Special Requests*`,
       specialRequests || 'None',
       ``,
-      `Sent from Beechnut Hotel Website`,
+      `Sent from Beechnut Hotel Website — https://beechnuthotel.pages.dev`,
     ]
     return encodeURIComponent(lines.join('\n'))
   }
