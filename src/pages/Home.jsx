@@ -98,9 +98,9 @@ function TestimonialCarousel() {
 }
 
 const heroBgVariants = {
-  enter: { opacity: 0, scale: 1.05 },
-  center: { opacity: 1, scale: 1, transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1] } },
-  exit: { opacity: 0, scale: 1.05, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
+  enter: { opacity: 0, scale: 1.08 },
+  center: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.25, 0.1, 0.25, 1] } },
+  exit: { opacity: 0, scale: 1.08, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
 }
 
 const heroContentVariants = {
@@ -125,18 +125,21 @@ export default function Home() {
   return (
     <>
       <section className="relative h-screen min-h-[680px] flex items-center justify-center overflow-hidden bg-navy-950" aria-label="Welcome to Beechnut Hotel Warri">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={slideIndex}
-            variants={heroBgVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroSlides[slideIndex]})` }}
-          />
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-950/70 via-navy-950/40 to-navy-950/65 z-10" />
+        <div className="absolute inset-0">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={slideIndex}
+              src={heroSlides[slideIndex]}
+              alt=""
+              variants={heroBgVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="w-full h-full object-cover"
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-br from-navy-950/70 via-navy-950/40 to-navy-950/65" />
+        </div>
         <motion.div
           variants={heroContentVariants}
           initial="hidden"
