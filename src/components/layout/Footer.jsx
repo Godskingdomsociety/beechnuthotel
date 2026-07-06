@@ -130,7 +130,7 @@ export default function Footer() {
                 <svg className="mt-0.5 shrink-0 text-gold-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 2 .99h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                <a href="tel:+2348130899632" className="hover:text-gold-400 transition-colors">+234 813 089 9632</a>
+                <a href="tel:+2348055000822" className="hover:text-gold-400 transition-colors">+234 805 500 0822</a>
               </div>
               <div className="flex items-start gap-2 text-sm text-white/55">
                 <svg className="mt-0.5 shrink-0 text-gold-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">

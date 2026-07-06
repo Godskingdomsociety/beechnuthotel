@@ -50,7 +50,7 @@ export default function Contact() {
                 {[
                   { icon: 'map', label: 'Address', value: '[Street Address], Warri, Delta State, Nigeria' },
                   { icon: 'phone', label: 'Phone', value: '+234 (0) 000 000 0000', href: 'tel:+2340000000000' },
-                  { icon: 'whatsapp', label: 'WhatsApp', value: '+234 813 089 9632', href: 'https://wa.me/2348130899632' },
+                  { icon: 'whatsapp', label: 'WhatsApp', value: '+234 805 500 0822', href: 'https://wa.me/2348055000822' },
                   { icon: 'mail', label: 'Email', value: 'info@beechnuthotelwarri.com', href: 'mailto:info@beechnuthotelwarri.com' },
                   { icon: 'clock', label: 'Reception', value: 'Open 24 hours — 7 days a week' },
                 ].map((item) => (

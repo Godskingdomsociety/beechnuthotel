@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 
 export default function WhatsAppFloat() {
-  const phone = '2348130899632'
+  const phone = '2348055000822'
   const message = encodeURIComponent('Hello, I would like to make a reservation at Beechnut Hotel Warri.')
   const href = `https://wa.me/${phone}?text=${message}`
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ROOMS } from '../data/rooms'
 
-const PHONE = '2348130899632'
+const PHONE = '2348055000822'
 
 const stepVariants = {
   enter: { opacity: 0, x: 40 },
