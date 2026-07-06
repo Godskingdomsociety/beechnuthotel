@@ -75,7 +75,9 @@ export default function Events() {
                   whileHover={{ y: -4, boxShadow: '0 16px 48px rgba(0,0,0,0.08)' }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  <div className="h-52 bg-cover bg-center" style={{ backgroundImage: `url(${space.image})` }} />
+                  <div className="h-52 overflow-hidden">
+                    <img src={space.image} alt={space.name} className="w-full h-full object-cover" loading="lazy" />
+                  </div>
                   <div className="p-6">
                     <span className="text-xs font-semibold tracking-wider uppercase text-gold-500 block mb-1">{space.capacity}</span>
                     <h3 className="font-display text-xl font-bold text-navy-900 mb-2">{space.name}</h3>

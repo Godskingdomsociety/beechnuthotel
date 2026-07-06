@@ -3,11 +3,23 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import ScrollReveal from '../components/ui/ScrollReveal'
 
+const PHONE = '2348055000822'
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+
+  const handleChange = (field) => (e) => setFormData(f => ({ ...f, [field]: e.target.value }))
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const { name, email, subject, message } = formData
+    if (!name.trim() || !email.trim() || !message.trim()) return
+    const timestamp = new Date().toLocaleString('en-NG', { timeZone: 'Africa/Lagos', dateStyle: 'full', timeStyle: 'short' })
+    const msg = encodeURIComponent(
+      `*New Contact Form Message — Beechnut Hotel Warri*\n_Submitted: ${timestamp}_\n\n*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject || 'Not provided'}\n*Message:*\n${message}\n\nSent from beechnuthotel.pages.dev`
+    )
+    window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank', 'noopener,noreferrer')
     setSubmitted(true)
   }
 
@@ -99,22 +111,22 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-mono tracking-wider uppercase text-gray-500 font-medium" htmlFor="contact-name">Your Name <span className="text-red-600">*</span></label>
-                      <input type="text" id="contact-name" className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none" placeholder="e.g. Emeka Okafor" required />
+                      <input type="text" id="contact-name" value={formData.name} onChange={handleChange('name')} className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none" placeholder="e.g. Emeka Okafor" required />
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-mono tracking-wider uppercase text-gray-500 font-medium" htmlFor="contact-email">Email <span className="text-red-600">*</span></label>
-                      <input type="email" id="contact-email" className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none" placeholder="you@example.com" required />
+                      <input type="email" id="contact-email" value={formData.email} onChange={handleChange('email')} className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none" placeholder="you@example.com" required />
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-1.5 mb-4">
                     <label className="text-xs font-mono tracking-wider uppercase text-gray-500 font-medium" htmlFor="contact-subject">Subject</label>
-                    <input type="text" id="contact-subject" className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none" placeholder="How can we help you?" />
+                    <input type="text" id="contact-subject" value={formData.subject} onChange={handleChange('subject')} className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none" placeholder="How can we help you?" />
                   </div>
 
                   <div className="flex flex-col gap-1.5 mb-4">
                     <label className="text-xs font-mono tracking-wider uppercase text-gray-500 font-medium" htmlFor="contact-message">Message <span className="text-red-600">*</span></label>
-                    <textarea id="contact-message" rows={5} className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none resize-y min-h-[120px]" placeholder="Tell us how we can assist you…" required />
+                    <textarea id="contact-message" rows={5} value={formData.message} onChange={handleChange('message')} className="w-full px-3 py-2.5 border border-gray-200 rounded-sm text-sm bg-gray-50 focus:border-navy-900 focus:bg-white focus:outline-none resize-y min-h-[120px]" placeholder="Tell us how we can assist you…" required />
                   </div>
 
                   <button type="submit" className="px-8 py-3 text-sm font-semibold tracking-wider uppercase rounded-sm bg-gold-500 text-navy-900 hover:bg-gold-600 transition-all">

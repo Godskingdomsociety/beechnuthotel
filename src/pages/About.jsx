@@ -58,9 +58,10 @@ export default function About() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-                className="h-[400px] bg-cover bg-center"
-                style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-1.webp)' }}
-              />
+                className="h-[400px] overflow-hidden"
+              >
+                <img src="/images/gallery/facilities/gallery-facility-1.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
+              </motion.div>
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -75,8 +76,7 @@ export default function About() {
             </motion.div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <div className="text-center mb-10">
+          <div className="text-center mb-10">
               <span className="text-xs font-semibold tracking-[0.24em] uppercase text-gold-500 block mb-2">Our Team</span>
               <h2 className="font-display text-3xl font-bold text-navy-900">The People Behind the <em className="text-gold-500 not-italic">Experience</em></h2>
             </div>
@@ -98,7 +98,6 @@ export default function About() {
                 </ScrollReveal>
               ))}
             </div>
-          </ScrollReveal>
         </div>
       </section>
     </>

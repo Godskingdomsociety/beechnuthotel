@@ -69,9 +69,10 @@ export default function Dining() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="min-h-[300px] lg:min-h-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${venue.image})` }}
-                  />
+                    className="min-h-[300px] lg:min-h-full overflow-hidden"
+                  >
+                    <img src={venue.image} alt={venue.name} className="w-full h-full object-cover" loading="lazy" />
+                  </motion.div>
                   <motion.div
                     initial={{ opacity: 0, x: i % 2 === 0 ? 30 : -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -102,6 +103,8 @@ export default function Dining() {
           </div>
         </div>
       </section>
+
+      <div id="reservations" />
     </>
   )
 }

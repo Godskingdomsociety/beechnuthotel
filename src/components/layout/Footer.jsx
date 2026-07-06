@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+
+const PHONE = '2348055000822'
 
 const SOCIAL_LINKS = [
   {
@@ -47,6 +50,15 @@ const itemVariants = {
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault()
+    if (!newsletterEmail.trim()) return
+    const msg = encodeURIComponent(`Newsletter signup — Beechnut Hotel Warri\n\nEmail: ${newsletterEmail}\n\nSent from beechnuthotel.pages.dev`)
+    window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank', 'noopener,noreferrer')
+    setNewsletterEmail('')
+  }
 
   return (
     <motion.footer
@@ -143,9 +155,11 @@ export default function Footer() {
             <div className="mt-5">
               <h4 className="font-body text-xs font-bold tracking-[0.15em] uppercase text-gold-400 mb-2">Newsletter</h4>
               <p className="text-sm text-white/55 mb-3">Special offers, seasonal packages, and stories from Warri's finest.</p>
-              <form className="flex gap-2" onSubmit={(e) => e.preventDefault()} aria-label="Newsletter signup">
+              <form className="flex gap-2" onSubmit={handleNewsletterSubmit} aria-label="Newsletter signup">
                 <input
                   type="email"
+                  value={newsletterEmail}
+                  onChange={e => setNewsletterEmail(e.target.value)}
                   placeholder="Your email address"
                   className="flex-1 px-3 py-2.5 text-sm bg-white/10 border border-white/15 rounded-sm text-white placeholder-white/30 outline-none focus:border-gold-400 transition-colors"
                   required

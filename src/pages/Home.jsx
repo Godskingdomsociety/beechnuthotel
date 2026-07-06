@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { TESTIMONIALS, STATS } from '../data/testimonials'
@@ -19,7 +19,7 @@ function StarRating({ count = 5 }) {
 
 function TestimonialCarousel() {
   const [index, setIndex] = useState(0)
-  const [autoTimer, setAutoTimer] = useState(null)
+  const timerRef = useRef(null)
 
   const next = useCallback(() => {
     setIndex(i => Math.min(i + 1, TESTIMONIALS.length - 1))
@@ -30,17 +30,16 @@ function TestimonialCarousel() {
   }, [])
 
   const resetAuto = useCallback(() => {
-    setAutoTimer(t => { if (t) clearInterval(t); return null })
-    const t = setInterval(() => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
       setIndex(i => (i + 1) % TESTIMONIALS.length)
     }, 5000)
-    setAutoTimer(t)
   }, [])
 
   useEffect(() => {
     resetAuto()
-    return () => { if (autoTimer) clearInterval(autoTimer) }
-  }, [])
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [resetAuto])
 
   return (
     <div className="relative">
@@ -301,9 +300,10 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-            className="min-h-[300px] lg:min-h-full bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/dining/gold-restaurant.webp)' }}
-          />
+            className="min-h-[300px] lg:min-h-full overflow-hidden"
+          >
+            <img src="/images/dining/gold-restaurant.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] overflow-hidden bg-navy-900">
@@ -326,9 +326,10 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="order-1 lg:order-2 min-h-[300px] lg:min-h-full bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/gallery/facilities/gallery-facility-3.webp)' }}
-          />
+            className="order-1 lg:order-2 min-h-[300px] lg:min-h-full overflow-hidden"
+          >
+            <img src="/images/gallery/facilities/gallery-facility-3.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px] overflow-hidden">
@@ -351,9 +352,10 @@ export default function Home() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="min-h-[300px] lg:min-h-full bg-cover bg-center"
-            style={{ backgroundImage: 'url(/images/rooms/deluxe-suite.webp)' }}
-          />
+            className="min-h-[300px] lg:min-h-full overflow-hidden"
+          >
+            <img src="/images/rooms/deluxe-suite.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
+          </motion.div>
         </div>
       </section>
 
@@ -365,7 +367,7 @@ export default function Home() {
         id="dining"
         aria-labelledby="dining-heading"
       >
-        <div className="absolute inset-0 bg-cover bg-center bg-fixed" style={{ backgroundImage: 'url(/images/dining/poolside-grill.webp)' }} />
+        <img src="/images/dining/poolside-grill.webp" alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-navy-950/70 z-10" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           <motion.div
