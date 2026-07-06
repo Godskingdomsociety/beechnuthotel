@@ -42,26 +42,25 @@ export default function Booking() {
 
   return (
     <>
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="bg-navy-950 pt-28 pb-12 text-center relative overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-radial from-gold-400/10 to-transparent pointer-events-none" />
-        <div className="relative z-10">
-          <span className="font-mono text-xs tracking-widest uppercase text-gold-400 mb-2 block">Reserve Your Stay</span>
-          <h1 className="font-display text-[clamp(2rem,5vw,3.2rem)] font-light text-white leading-tight">
-            Book a <em className="text-gold-400 italic">Room</em>
+      <section className="relative h-[60vh] min-h-[380px] flex flex-col items-center justify-center text-center overflow-hidden bg-navy-950">
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative z-10 px-4"
+        >
+          <span className="text-xs font-semibold tracking-[0.28em] uppercase text-gold-400 mb-3 block">Beechnut Hotel Warri</span>
+          <h1 className="font-display text-[clamp(2.8rem,6vw,4.4rem)] font-bold text-white leading-tight mb-4">
+            Book a <em className="italic text-gold-400 not-italic">Room</em>
           </h1>
-        </div>
-      </motion.section>
-
-      <div className="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-500">
-        <Link to="/" className="text-navy-900 hover:underline">Home</Link>
-        <span className="mx-1.5">›</span>
-        <span>Book a Room</span>
-      </div>
+          <nav className="flex items-center justify-center gap-2 text-sm text-white/50" aria-label="Breadcrumb">
+            <Link to="/" className="text-white/70 hover:text-gold-400 transition-colors">Home</Link>
+            <span className="text-gold-400/60">›</span>
+            <span className="text-gold-400 font-medium">Book a Room</span>
+          </nav>
+        </motion.div>
+      </section>
 
       <main className="max-w-5xl mx-auto px-4 pb-16">
         {!submitted ? (
